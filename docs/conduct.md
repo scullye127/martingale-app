@@ -86,3 +86,4 @@ For answers to common questions about this code of conduct, see the FAQ at [http
 ![IMG_5355](https://github.com/user-attachments/assets/cde88d36-6f42-45d6-b6d1-a64657512a42)
 
 <img width="476" height="144" alt="Signature" src="https://github.com/user-attachments/assets/586c35ce-0688-4502-8a4b-f8edf4f20a7c" />
+<img width="819" height="205" alt="Screenshot 2025-10-09 120047" src="https://github.com/user-attachments/assets/57962aa1-983a-4b0c-8ef3-0bb29a9641a1" />
