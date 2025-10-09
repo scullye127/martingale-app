@@ -84,5 +84,5 @@ For answers to common questions about this code of conduct, see the FAQ at [http
 
 ## Signatures
 
-![Scully's signature.]([https://myoctocat.com/assets/images/base-octocat.svg](https://drive.google.com/file/d/1C6ZcB6ZIHzcj-EMsmQ6i0mtKaG4ScESx/view?usp=sharing))
+![Scully's signature.](https://drive.google.com/file/d/1C6ZcB6ZIHzcj-EMsmQ6i0mtKaG4ScESx/view?usp=sharing)
 
