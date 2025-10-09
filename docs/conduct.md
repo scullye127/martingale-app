@@ -83,6 +83,4 @@ For answers to common questions about this code of conduct, see the FAQ at [http
 [translations]: https://www.contributor-covenant.org/translations
 
 ## Signatures
-
-![Scully's signature.](https://drive.google.com/file/d/1C6ZcB6ZIHzcj-EMsmQ6i0mtKaG4ScESx/view?usp=sharing)
-
+![IMG_5355](https://github.com/user-attachments/assets/cde88d36-6f42-45d6-b6d1-a64657512a42)
