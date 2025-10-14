@@ -10,7 +10,7 @@
  
 * Observation 3
   * Observation Statement: Customers prefer daily updates. Least preferred when done its done.
-  * Supporting Data: 37% of users voted for daily users in the survey.
+  * Supporting Data: 37% of users voted for daily users in the survey (only 25% for live or other).
   * Team Action (if any): We should use daily updates on the boats status.
  
 * Observation 4
