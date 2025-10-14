@@ -4,9 +4,9 @@
   * Team Action (if any): We need to target the app towards older users, making it easy to use for less tech-savvy individuals
  
 * Observation 2
-  * Observation Statement:
-  * Supporting Data:
-  * Team Action (if any):
+  * Observation Statement: Majority of issues with owner's boats are engine related
+  * Supporting Data: The largest distrivution of boat issues was the engine with 31.3%, the second closest applicable option was elecrtrical with 6.3%
+  * Team Action (if any): Have more contractors who specialize with engine repairs than other fields.
  
 * Observation 3
   * Observation Statement: Customers prefer daily updates. Least preferred when done its done.
