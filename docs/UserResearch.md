@@ -14,6 +14,6 @@
   * Team Action (if any): We should use daily updates on the boats status.
  
 * Observation 4
-  * Observation Statement:
-  * Supporting Data:
-  * Team Action (if any):
+  * Observation Statement: Boat owners feel confident when diagnosing issues with their boat.
+  * Supporting Data: all boat owners gave a 3 or higher when rating confidence in diagnosing issues on a scale from 1-5
+  * Team Action (if any): None, we were already planning on adding a way for boat owners to describe their issues.
