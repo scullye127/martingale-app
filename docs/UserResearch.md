@@ -1,7 +1,7 @@
 * Observation 1
-  * Observation Statement:
-  * Supporting Data:
-  * Team Action (if any):
+  * Observation Statement: Young people don't have boats
+  * Supporting Data: Every respondant in the 18-30 age range said they don't own boats
+  * Team Action (if any): We need to target the app towards older users, making it easy to use for less tech-savvy individuals
  
 * Observation 2
   * Observation Statement:
