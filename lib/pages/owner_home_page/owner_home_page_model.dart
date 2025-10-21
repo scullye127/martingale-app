@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'home_page_widget.dart' show HomePageWidget;
+import 'owner_home_page_widget.dart' show OwnerHomePageWidget;
 import 'package:flutter/material.dart';
 
-class HomePageModel extends FlutterFlowModel<HomePageWidget> {
+class OwnerHomePageModel extends FlutterFlowModel<OwnerHomePageWidget> {
   @override
   void initState(BuildContext context) {}
 
