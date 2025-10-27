@@ -10,3 +10,4 @@ At least one other metric specific to your app. Example : Average number of new 
 * Metric 1: Net Promoter Score - Survey sent to users
 * Metric 2: Engagement Time - Recorded by Firebase
 * Metric 3: User retention - Recorded by Firebase
+* Metric 4: Time to Complete Tickets - time_created and time_completed are variables, upon completetion we will take the difference of the two and record in firebase.
