@@ -32,3 +32,11 @@ Metrics: This will test if users stay longer or less long based on the colors of
 Hypothesis: We will be able to optimize the app to the colors that appeal to the users the most allowing for the users to have a stronger desire to come back to the app.  
 Experiment setup: We will give around half of the users a yellow or black button and then use metrics to determine which has a better level of engagement.
 Variations:  We will use black and yellow for this on certain buttons.
+
+Payton:
+test name: light vs dark mode
+user story #5 Golden Path
+Metrics: This will test if users use the app and stay on it longer if they have the ability to switch between dark and light mode.
+Hypothesis: I think most people will use dark mode more because it is easier on the eyes and most people I know use dark mode whenever possible.
+Experiment setup: a third of the users will be set to light mode, a third will be set to dark mode, and the last third will have the option to toggle between the two modes.
+Varations: The background on the light mode will be white or light grey and the background for dark mode will be black.
