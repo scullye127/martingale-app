@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/index.dart';
 import 'sign_up_widget.dart' show SignUpWidget;
 import 'package:flutter/material.dart';
@@ -6,95 +7,52 @@ import 'package:flutter/material.dart';
 class SignUpModel extends FlutterFlowModel<SignUpWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final formKey2 = GlobalKey<FormState>();
-  final formKey1 = GlobalKey<FormState>();
-  // State field(s) for TabBar widget.
-  TabController? tabBarController;
-  int get tabBarCurrentIndex =>
-      tabBarController != null ? tabBarController!.index : 0;
-  int get tabBarPreviousIndex =>
-      tabBarController != null ? tabBarController!.previousIndex : 0;
-
-  // State field(s) for owner-signup-email widget.
-  FocusNode? ownerSignupEmailFocusNode;
-  TextEditingController? ownerSignupEmailTextController;
-  String? Function(BuildContext, String?)?
-      ownerSignupEmailTextControllerValidator;
-  String? _ownerSignupEmailTextControllerValidator(
+  final formKey = GlobalKey<FormState>();
+  // State field(s) for roleSelect widget.
+  String? roleSelectValue;
+  FormFieldController<String>? roleSelectValueController;
+  // State field(s) for signup-email widget.
+  FocusNode? signupEmailFocusNode;
+  TextEditingController? signupEmailTextController;
+  String? Function(BuildContext, String?)? signupEmailTextControllerValidator;
+  String? _signupEmailTextControllerValidator(
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Email is required';
     }
 
+    if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
+      return 'Has to be a valid email address.';
+    }
     return null;
   }
 
-  // State field(s) for owner-signup-password widget.
-  FocusNode? ownerSignupPasswordFocusNode;
-  TextEditingController? ownerSignupPasswordTextController;
-  late bool ownerSignupPasswordVisibility;
+  // State field(s) for signup-password widget.
+  FocusNode? signupPasswordFocusNode;
+  TextEditingController? signupPasswordTextController;
+  late bool signupPasswordVisibility;
   String? Function(BuildContext, String?)?
-      ownerSignupPasswordTextControllerValidator;
-  String? _ownerSignupPasswordTextControllerValidator(
+      signupPasswordTextControllerValidator;
+  String? _signupPasswordTextControllerValidator(
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Password is required';
     }
 
-    return null;
-  }
-
-  // State field(s) for owner-signup-confirmpword widget.
-  FocusNode? ownerSignupConfirmpwordFocusNode;
-  TextEditingController? ownerSignupConfirmpwordTextController;
-  late bool ownerSignupConfirmpwordVisibility;
-  String? Function(BuildContext, String?)?
-      ownerSignupConfirmpwordTextControllerValidator;
-  String? _ownerSignupConfirmpwordTextControllerValidator(
-      BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Password is required';
+    if (val.length < 8) {
+      return 'Password must be at least 8 characters';
     }
 
     return null;
   }
 
-  // State field(s) for contractor-signup-email widget.
-  FocusNode? contractorSignupEmailFocusNode;
-  TextEditingController? contractorSignupEmailTextController;
+  // State field(s) for signup-confirmpword widget.
+  FocusNode? signupConfirmpwordFocusNode;
+  TextEditingController? signupConfirmpwordTextController;
+  late bool signupConfirmpwordVisibility;
   String? Function(BuildContext, String?)?
-      contractorSignupEmailTextControllerValidator;
-  String? _contractorSignupEmailTextControllerValidator(
-      BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Email is required';
-    }
-
-    return null;
-  }
-
-  // State field(s) for contractor-signup-pword widget.
-  FocusNode? contractorSignupPwordFocusNode;
-  TextEditingController? contractorSignupPwordTextController;
-  late bool contractorSignupPwordVisibility;
-  String? Function(BuildContext, String?)?
-      contractorSignupPwordTextControllerValidator;
-  String? _contractorSignupPwordTextControllerValidator(
-      BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Password is required';
-    }
-
-    return null;
-  }
-
-  // State field(s) for contractor-signup-confirmpword widget.
-  FocusNode? contractorSignupConfirmpwordFocusNode;
-  TextEditingController? contractorSignupConfirmpwordTextController;
-  late bool contractorSignupConfirmpwordVisibility;
-  String? Function(BuildContext, String?)?
-      contractorSignupConfirmpwordTextControllerValidator;
-  String? _contractorSignupConfirmpwordTextControllerValidator(
+      signupConfirmpwordTextControllerValidator;
+  String? _signupConfirmpwordTextControllerValidator(
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Password is required';
@@ -105,43 +63,24 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
 
   @override
   void initState(BuildContext context) {
-    ownerSignupEmailTextControllerValidator =
-        _ownerSignupEmailTextControllerValidator;
-    ownerSignupPasswordVisibility = false;
-    ownerSignupPasswordTextControllerValidator =
-        _ownerSignupPasswordTextControllerValidator;
-    ownerSignupConfirmpwordVisibility = false;
-    ownerSignupConfirmpwordTextControllerValidator =
-        _ownerSignupConfirmpwordTextControllerValidator;
-    contractorSignupEmailTextControllerValidator =
-        _contractorSignupEmailTextControllerValidator;
-    contractorSignupPwordVisibility = false;
-    contractorSignupPwordTextControllerValidator =
-        _contractorSignupPwordTextControllerValidator;
-    contractorSignupConfirmpwordVisibility = false;
-    contractorSignupConfirmpwordTextControllerValidator =
-        _contractorSignupConfirmpwordTextControllerValidator;
+    signupEmailTextControllerValidator = _signupEmailTextControllerValidator;
+    signupPasswordVisibility = false;
+    signupPasswordTextControllerValidator =
+        _signupPasswordTextControllerValidator;
+    signupConfirmpwordVisibility = false;
+    signupConfirmpwordTextControllerValidator =
+        _signupConfirmpwordTextControllerValidator;
   }
 
   @override
   void dispose() {
-    tabBarController?.dispose();
-    ownerSignupEmailFocusNode?.dispose();
-    ownerSignupEmailTextController?.dispose();
+    signupEmailFocusNode?.dispose();
+    signupEmailTextController?.dispose();
 
-    ownerSignupPasswordFocusNode?.dispose();
-    ownerSignupPasswordTextController?.dispose();
+    signupPasswordFocusNode?.dispose();
+    signupPasswordTextController?.dispose();
 
-    ownerSignupConfirmpwordFocusNode?.dispose();
-    ownerSignupConfirmpwordTextController?.dispose();
-
-    contractorSignupEmailFocusNode?.dispose();
-    contractorSignupEmailTextController?.dispose();
-
-    contractorSignupPwordFocusNode?.dispose();
-    contractorSignupPwordTextController?.dispose();
-
-    contractorSignupConfirmpwordFocusNode?.dispose();
-    contractorSignupConfirmpwordTextController?.dispose();
+    signupConfirmpwordFocusNode?.dispose();
+    signupConfirmpwordTextController?.dispose();
   }
 }

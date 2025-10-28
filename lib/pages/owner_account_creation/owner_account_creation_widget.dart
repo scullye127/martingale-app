@@ -34,6 +34,8 @@ class _OwnerAccountCreationWidgetState
     super.initState();
     _model = createModel(context, () => OwnerAccountCreationModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'ownerAccountCreation'});
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 
@@ -119,6 +121,9 @@ class _OwnerAccountCreationWidgetState
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          logFirebaseEvent(
+                              'OWNER_ACCOUNT_CREATION_Stack_tc85yc3o_ON');
+                          logFirebaseEvent('Stack_upload_media_to_firebase');
                           final selectedMedia =
                               await selectMediaWithSourceBottomSheet(
                             context: context,
@@ -171,6 +176,8 @@ class _OwnerAccountCreationWidgetState
                             }
                           }
 
+                          logFirebaseEvent('Stack_backend_call');
+
                           await currentUserReference!
                               .update(createUsersRecordData(
                             photoUrl: _model.uploadedFileUrl_profilePhoto,
@@ -182,15 +189,24 @@ class _OwnerAccountCreationWidgetState
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   10.0, 0.0, 0.0, 10.0),
-                              child: Container(
-                                width: 75.0,
-                                height: 75.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    color: FlutterFlowTheme.of(context).warning,
+                              child: AuthUserStreamWidget(
+                                builder: (context) => Container(
+                                  width: 75.0,
+                                  height: 75.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: Image.network(
+                                        currentUserPhoto,
+                                      ).image,
+                                    ),
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color:
+                                          FlutterFlowTheme.of(context).warning,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -551,15 +567,26 @@ class _OwnerAccountCreationWidgetState
                   padding: EdgeInsets.all(16.0),
                   child: FFButtonWidget(
                     onPressed: () async {
+                      logFirebaseEvent(
+                          'OWNER_ACCOUNT_CREATION_CONFIRM_DETAILS_B');
+                      logFirebaseEvent('Button_validate_form');
+                      if (_model.formKey.currentState == null ||
+                          !_model.formKey.currentState!.validate()) {
+                        return;
+                      }
+                      logFirebaseEvent('Button_backend_call');
+
                       await currentUserReference!.update(createUsersRecordData(
                         phoneNumber: _model.textController2.text,
                         displayName: _model.textController1.text,
                       ));
+                      logFirebaseEvent('Button_backend_call');
 
                       await OwnerDatabaseRecord.createDoc(currentUserReference!)
                           .set(createOwnerDatabaseRecordData(
                         marinaAddress: _model.textController3.text,
                       ));
+                      logFirebaseEvent('Button_navigate_to');
 
                       context.pushNamed(OwnerHomePageWidget.routeName);
                     },

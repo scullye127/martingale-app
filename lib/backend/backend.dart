@@ -9,6 +9,8 @@ import 'schema/vessel_database_record.dart';
 import 'schema/users_record.dart';
 import 'schema/contractors_record.dart';
 import 'schema/owner_database_record.dart';
+import 'schema/jobs_record.dart';
+import 'schema/sub_task_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -21,6 +23,8 @@ export 'schema/vessel_database_record.dart';
 export 'schema/users_record.dart';
 export 'schema/contractors_record.dart';
 export 'schema/owner_database_record.dart';
+export 'schema/jobs_record.dart';
+export 'schema/sub_task_record.dart';
 
 /// Functions to query VesselDatabaseRecords (as a Stream and as a Future).
 Future<int> queryVesselDatabaseRecordCount({
@@ -171,6 +175,83 @@ Future<List<OwnerDatabaseRecord>> queryOwnerDatabaseRecordOnce({
     queryCollectionOnce(
       OwnerDatabaseRecord.collection(parent),
       OwnerDatabaseRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query JobsRecords (as a Stream and as a Future).
+Future<int> queryJobsRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      JobsRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<JobsRecord>> queryJobsRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      JobsRecord.collection,
+      JobsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<JobsRecord>> queryJobsRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      JobsRecord.collection,
+      JobsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query SubTaskRecords (as a Stream and as a Future).
+Future<int> querySubTaskRecordCount({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      SubTaskRecord.collection(parent),
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<SubTaskRecord>> querySubTaskRecord({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      SubTaskRecord.collection(parent),
+      SubTaskRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<SubTaskRecord>> querySubTaskRecordOnce({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      SubTaskRecord.collection(parent),
+      SubTaskRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

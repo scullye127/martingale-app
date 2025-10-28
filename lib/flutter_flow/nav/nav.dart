@@ -75,16 +75,29 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) => appStateNotifier.loggedIn
-          ? ContractorHomePageWidget()
-          : SignUpWidget(),
+      errorBuilder: (context, state) =>
+          appStateNotifier.loggedIn ? DummyLoaderWidget() : LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? ContractorHomePageWidget()
-              : SignUpWidget(),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? DummyLoaderWidget() : LoginWidget(),
+        ),
+        FFRoute(
+          name: SignUpWidget.routeName,
+          path: SignUpWidget.routePath,
+          builder: (context, params) => SignUpWidget(),
+        ),
+        FFRoute(
+          name: ContractorHomePageWidget.routeName,
+          path: ContractorHomePageWidget.routePath,
+          builder: (context, params) => ContractorHomePageWidget(),
+        ),
+        FFRoute(
+          name: OwnerHomePageWidget.routeName,
+          path: OwnerHomePageWidget.routePath,
+          builder: (context, params) => OwnerHomePageWidget(),
         ),
         FFRoute(
           name: ContractorAccountCreationWidget.routeName,
@@ -102,19 +115,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => LoginWidget(),
         ),
         FFRoute(
-          name: SignUpWidget.routeName,
-          path: SignUpWidget.routePath,
-          builder: (context, params) => SignUpWidget(),
+          name: TicketSubmitWidget.routeName,
+          path: TicketSubmitWidget.routePath,
+          builder: (context, params) => TicketSubmitWidget(),
         ),
         FFRoute(
-          name: ContractorHomePageWidget.routeName,
-          path: ContractorHomePageWidget.routePath,
-          builder: (context, params) => ContractorHomePageWidget(),
-        ),
-        FFRoute(
-          name: OwnerHomePageWidget.routeName,
-          path: OwnerHomePageWidget.routePath,
-          builder: (context, params) => OwnerHomePageWidget(),
+          name: DummyLoaderWidget.routeName,
+          path: DummyLoaderWidget.routePath,
+          builder: (context, params) => DummyLoaderWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -285,7 +293,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/signUp';
+            return '/login';
           }
           return null;
         },

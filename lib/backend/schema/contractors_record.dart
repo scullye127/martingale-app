@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -46,6 +47,11 @@ class ContractorsRecord extends FirestoreRecord {
   String get availability => _availability ?? '';
   bool hasAvailability() => _availability != null;
 
+  // "expertise" field.
+  List<String>? _expertise;
+  List<String> get expertise => _expertise ?? const [];
+  bool hasExpertise() => _expertise != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
@@ -55,6 +61,7 @@ class ContractorsRecord extends FirestoreRecord {
     _licenseNumber = snapshotData['license_number'] as String?;
     _serviceArea = snapshotData['service_area'] as String?;
     _availability = snapshotData['availability'] as String?;
+    _expertise = getDataList(snapshotData['expertise']);
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -123,12 +130,14 @@ class ContractorsRecordDocumentEquality implements Equality<ContractorsRecord> {
 
   @override
   bool equals(ContractorsRecord? e1, ContractorsRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.insuranceCompany == e2?.insuranceCompany &&
         e1?.insurancePolicyNum == e2?.insurancePolicyNum &&
         e1?.yearsExperience == e2?.yearsExperience &&
         e1?.licenseNumber == e2?.licenseNumber &&
         e1?.serviceArea == e2?.serviceArea &&
-        e1?.availability == e2?.availability;
+        e1?.availability == e2?.availability &&
+        listEquality.equals(e1?.expertise, e2?.expertise);
   }
 
   @override
@@ -138,7 +147,8 @@ class ContractorsRecordDocumentEquality implements Equality<ContractorsRecord> {
         e?.yearsExperience,
         e?.licenseNumber,
         e?.serviceArea,
-        e?.availability
+        e?.availability,
+        e?.expertise
       ]);
 
   @override

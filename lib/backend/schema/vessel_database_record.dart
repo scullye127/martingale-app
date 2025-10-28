@@ -25,9 +25,15 @@ class VesselDatabaseRecord extends FirestoreRecord {
   String get vesselOwner => _vesselOwner ?? '';
   bool hasVesselOwner() => _vesselOwner != null;
 
+  // "vessel_number" field.
+  int? _vesselNumber;
+  int get vesselNumber => _vesselNumber ?? 0;
+  bool hasVesselNumber() => _vesselNumber != null;
+
   void _initializeFields() {
     _vesselName = snapshotData['vessel_name'] as String?;
     _vesselOwner = snapshotData['vessel_owner'] as String?;
+    _vesselNumber = castToType<int>(snapshotData['vessel_number']);
   }
 
   static CollectionReference get collection =>
@@ -67,11 +73,13 @@ class VesselDatabaseRecord extends FirestoreRecord {
 Map<String, dynamic> createVesselDatabaseRecordData({
   String? vesselName,
   String? vesselOwner,
+  int? vesselNumber,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'vessel_name': vesselName,
       'vessel_owner': vesselOwner,
+      'vessel_number': vesselNumber,
     }.withoutNulls,
   );
 
@@ -85,12 +93,13 @@ class VesselDatabaseRecordDocumentEquality
   @override
   bool equals(VesselDatabaseRecord? e1, VesselDatabaseRecord? e2) {
     return e1?.vesselName == e2?.vesselName &&
-        e1?.vesselOwner == e2?.vesselOwner;
+        e1?.vesselOwner == e2?.vesselOwner &&
+        e1?.vesselNumber == e2?.vesselNumber;
   }
 
   @override
-  int hash(VesselDatabaseRecord? e) =>
-      const ListEquality().hash([e?.vesselName, e?.vesselOwner]);
+  int hash(VesselDatabaseRecord? e) => const ListEquality()
+      .hash([e?.vesselName, e?.vesselOwner, e?.vesselNumber]);
 
   @override
   bool isValidKey(Object? o) => o is VesselDatabaseRecord;

@@ -32,6 +32,8 @@ class _ContractorAccountCreationWidgetState
     super.initState();
     _model = createModel(context, () => ContractorAccountCreationModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'contractorAccountCreation'});
     _model.nameTextController ??= TextEditingController();
     _model.nameFocusNode ??= FocusNode();
 
@@ -1045,15 +1047,20 @@ class _ContractorAccountCreationWidgetState
                   padding: EdgeInsets.all(24.0),
                   child: FFButtonWidget(
                     onPressed: () async {
+                      logFirebaseEvent(
+                          'CONTRACTOR_ACCOUNT_CREATION_CONFIRM_DETA');
+                      logFirebaseEvent('Button_validate_form');
                       if (_model.formKey.currentState == null ||
                           !_model.formKey.currentState!.validate()) {
                         return;
                       }
+                      logFirebaseEvent('Button_backend_call');
 
                       await currentUserReference!.update(createUsersRecordData(
                         phoneNumber: _model.textController2.text,
                         displayName: _model.nameTextController.text,
                       ));
+                      logFirebaseEvent('Button_backend_call');
 
                       await ContractorsRecord.createDoc(currentUserReference!)
                           .set(createContractorsRecordData(
@@ -1065,6 +1072,7 @@ class _ContractorAccountCreationWidgetState
                         serviceArea: _model.textController6.text,
                         availability: _model.textController8.text,
                       ));
+                      logFirebaseEvent('Button_navigate_to');
 
                       context.goNamed(ContractorHomePageWidget.routeName);
                     },

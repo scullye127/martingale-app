@@ -1,12 +1,15 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import '/index.dart';
-import 'login_widget.dart' show LoginWidget;
+import 'ticket_submit_widget.dart' show TicketSubmitWidget;
 import 'package:flutter/material.dart';
 
-class LoginModel extends FlutterFlowModel<LoginWidget> {
+class TicketSubmitModel extends FlutterFlowModel<TicketSubmitWidget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
+  // State field(s) for jobName widget.
+  FocusNode? jobNameFocusNode;
+  TextEditingController? jobNameTextController;
+  String? Function(BuildContext, String?)? jobNameTextControllerValidator;
   // State field(s) for login-email widget.
   FocusNode? loginEmailFocusNode;
   TextEditingController? loginEmailTextController;
@@ -24,38 +27,22 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
     return null;
   }
 
-  // State field(s) for login-password widget.
-  FocusNode? loginPasswordFocusNode;
-  TextEditingController? loginPasswordTextController;
-  late bool loginPasswordVisibility;
-  String? Function(BuildContext, String?)? loginPasswordTextControllerValidator;
-  String? _loginPasswordTextControllerValidator(
-      BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Password is required';
-    }
-
-    if (val.length < 8) {
-      return 'Requires at least 8 characters.';
-    }
-
-    return null;
-  }
+  bool isDataUploading_uploadData0xj = false;
+  FFUploadedFile uploadedLocalFile_uploadData0xj =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl_uploadData0xj = '';
 
   @override
   void initState(BuildContext context) {
     loginEmailTextControllerValidator = _loginEmailTextControllerValidator;
-    loginPasswordVisibility = false;
-    loginPasswordTextControllerValidator =
-        _loginPasswordTextControllerValidator;
   }
 
   @override
   void dispose() {
+    jobNameFocusNode?.dispose();
+    jobNameTextController?.dispose();
+
     loginEmailFocusNode?.dispose();
     loginEmailTextController?.dispose();
-
-    loginPasswordFocusNode?.dispose();
-    loginPasswordTextController?.dispose();
   }
 }

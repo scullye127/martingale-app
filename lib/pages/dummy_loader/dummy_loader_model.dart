@@ -1,9 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
-import 'owner_home_page_widget.dart' show OwnerHomePageWidget;
+import 'dummy_loader_widget.dart' show DummyLoaderWidget;
 import 'package:flutter/material.dart';
 
-class OwnerHomePageModel extends FlutterFlowModel<OwnerHomePageWidget> {
+class DummyLoaderModel extends FlutterFlowModel<DummyLoaderWidget> {
   @override
   void initState(BuildContext context) {}
 

@@ -46,15 +46,10 @@ class UsersRecord extends FirestoreRecord {
   String get displayName => _displayName ?? '';
   bool hasDisplayName() => _displayName != null;
 
-  // "is_contractor" field.
-  bool? _isContractor;
-  bool get isContractor => _isContractor ?? false;
-  bool hasIsContractor() => _isContractor != null;
-
-  // "is_owner" field.
-  bool? _isOwner;
-  bool get isOwner => _isOwner ?? false;
-  bool hasIsOwner() => _isOwner != null;
+  // "user_role" field.
+  String? _userRole;
+  String get userRole => _userRole ?? '';
+  bool hasUserRole() => _userRole != null;
 
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
@@ -63,8 +58,7 @@ class UsersRecord extends FirestoreRecord {
     _createdTime = snapshotData['created_time'] as DateTime?;
     _phoneNumber = snapshotData['phone_number'] as String?;
     _displayName = snapshotData['display_name'] as String?;
-    _isContractor = snapshotData['is_contractor'] as bool?;
-    _isOwner = snapshotData['is_owner'] as bool?;
+    _userRole = snapshotData['user_role'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -107,8 +101,7 @@ Map<String, dynamic> createUsersRecordData({
   DateTime? createdTime,
   String? phoneNumber,
   String? displayName,
-  bool? isContractor,
-  bool? isOwner,
+  String? userRole,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -118,8 +111,7 @@ Map<String, dynamic> createUsersRecordData({
       'created_time': createdTime,
       'phone_number': phoneNumber,
       'display_name': displayName,
-      'is_contractor': isContractor,
-      'is_owner': isOwner,
+      'user_role': userRole,
     }.withoutNulls,
   );
 
@@ -137,8 +129,7 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.createdTime == e2?.createdTime &&
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.displayName == e2?.displayName &&
-        e1?.isContractor == e2?.isContractor &&
-        e1?.isOwner == e2?.isOwner;
+        e1?.userRole == e2?.userRole;
   }
 
   @override
@@ -149,8 +140,7 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.createdTime,
         e?.phoneNumber,
         e?.displayName,
-        e?.isContractor,
-        e?.isOwner
+        e?.userRole
       ]);
 
   @override
