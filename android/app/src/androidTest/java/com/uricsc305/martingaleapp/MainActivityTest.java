@@ -1,4 +1,4 @@
-package com.mycompany.martingaleapp;
+package com.uricsc305.martingaleapp;
 
 import androidx.test.rule.ActivityTestRule;
 import dev.flutter.plugins.integration_test.FlutterTestRunner;
