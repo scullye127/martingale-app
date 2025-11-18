@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -70,34 +71,65 @@ class AppStateNotifier extends ChangeNotifier {
   }
 }
 
-GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
+GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
+    GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? DummyLoaderWidget() : LoginWidget(),
+      errorBuilder: (context, state) => appStateNotifier.loggedIn
+          ? entryPage ?? DummyLoaderWidget()
+          : LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) =>
-              appStateNotifier.loggedIn ? DummyLoaderWidget() : LoginWidget(),
+          builder: (context, _) => appStateNotifier.loggedIn
+              ? entryPage ?? DummyLoaderWidget()
+              : LoginWidget(),
         ),
         FFRoute(
-          name: SignUpWidget.routeName,
-          path: SignUpWidget.routePath,
-          builder: (context, params) => SignUpWidget(),
+          name: DummyLoaderWidget.routeName,
+          path: DummyLoaderWidget.routePath,
+          builder: (context, params) => DummyLoaderWidget(),
         ),
         FFRoute(
-          name: ContractorHomePageWidget.routeName,
-          path: ContractorHomePageWidget.routePath,
-          builder: (context, params) => ContractorHomePageWidget(),
+          name: CompleteJobWidget.routeName,
+          path: CompleteJobWidget.routePath,
+          builder: (context, params) => CompleteJobWidget(),
         ),
         FFRoute(
-          name: OwnerHomePageWidget.routeName,
-          path: OwnerHomePageWidget.routePath,
-          builder: (context, params) => OwnerHomePageWidget(),
+          name: LoginWidget.routeName,
+          path: LoginWidget.routePath,
+          builder: (context, params) => LoginWidget(),
+        ),
+        FFRoute(
+          name: AssignContractorWidget.routeName,
+          path: AssignContractorWidget.routePath,
+          builder: (context, params) => AssignContractorWidget(),
+        ),
+        FFRoute(
+          name: CreateSubtask1Widget.routeName,
+          path: CreateSubtask1Widget.routePath,
+          asyncParams: {
+            'taskDetails': getDoc(['jobs'], JobsRecord.fromSnapshot),
+          },
+          builder: (context, params) => CreateSubtask1Widget(
+            taskDetails: params.getParam(
+              'taskDetails',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: AdminPageAssignedWidget.routeName,
+          path: AdminPageAssignedWidget.routePath,
+          builder: (context, params) => AdminPageAssignedWidget(),
+        ),
+        FFRoute(
+          name: AdminPageCompletedWidget.routeName,
+          path: AdminPageCompletedWidget.routePath,
+          builder: (context, params) => AdminPageCompletedWidget(),
         ),
         FFRoute(
           name: ContractorAccountCreationWidget.routeName,
@@ -110,9 +142,34 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => OwnerAccountCreationWidget(),
         ),
         FFRoute(
-          name: LoginWidget.routeName,
-          path: LoginWidget.routePath,
-          builder: (context, params) => LoginWidget(),
+          name: SignUpWidget.routeName,
+          path: SignUpWidget.routePath,
+          builder: (context, params) => SignUpWidget(),
+        ),
+        FFRoute(
+          name: OwnerHomePageWidget.routeName,
+          path: OwnerHomePageWidget.routePath,
+          builder: (context, params) => OwnerHomePageWidget(),
+        ),
+        FFRoute(
+          name: BoatCreateOwnerWidget.routeName,
+          path: BoatCreateOwnerWidget.routePath,
+          builder: (context, params) => BoatCreateOwnerWidget(),
+        ),
+        FFRoute(
+          name: BoatCreateAdminWidget.routeName,
+          path: BoatCreateAdminWidget.routePath,
+          builder: (context, params) => BoatCreateAdminWidget(),
+        ),
+        FFRoute(
+          name: AdminPageSubmittedWidget.routeName,
+          path: AdminPageSubmittedWidget.routePath,
+          builder: (context, params) => AdminPageSubmittedWidget(),
+        ),
+        FFRoute(
+          name: BoatInformationWidget.routeName,
+          path: BoatInformationWidget.routePath,
+          builder: (context, params) => BoatInformationWidget(),
         ),
         FFRoute(
           name: TicketSubmitWidget.routeName,
@@ -120,11 +177,52 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => TicketSubmitWidget(),
         ),
         FFRoute(
-          name: DummyLoaderWidget.routeName,
-          path: DummyLoaderWidget.routePath,
-          builder: (context, params) => DummyLoaderWidget(),
+          name: TaskDetailsWidget.routeName,
+          path: TaskDetailsWidget.routePath,
+          asyncParams: {
+            'task': getDoc(['jobs'], JobsRecord.fromSnapshot),
+          },
+          builder: (context, params) => TaskDetailsWidget(
+            task: params.getParam(
+              'task',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: ContractorHomePageWidget.routeName,
+          path: ContractorHomePageWidget.routePath,
+          builder: (context, params) => ContractorHomePageWidget(),
+        ),
+        FFRoute(
+          name: OwnerHomePageTicketsWidget.routeName,
+          path: OwnerHomePageTicketsWidget.routePath,
+          builder: (context, params) => OwnerHomePageTicketsWidget(),
+        ),
+        FFRoute(
+          name: UpdateJobWidget.routeName,
+          path: UpdateJobWidget.routePath,
+          builder: (context, params) => UpdateJobWidget(
+            job: params.getParam(
+              'job',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['jobs'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: AdminPageNewCompletedWidget.routeName,
+          path: AdminPageNewCompletedWidget.routePath,
+          builder: (context, params) => AdminPageNewCompletedWidget(),
+        ),
+        FFRoute(
+          name: AdminPageNewAssignedWidget.routeName,
+          path: AdminPageNewAssignedWidget.routePath,
+          builder: (context, params) => AdminPageNewAssignedWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
+      observers: [routeObserver],
     );
 
 extension NavParamExtensions on Map<String, String?> {

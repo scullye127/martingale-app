@@ -40,6 +40,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
     _model.signupConfirmpwordTextController ??= TextEditingController();
     _model.signupConfirmpwordFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -109,89 +111,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.all(12.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
-                      child: Padding(
-                        padding: EdgeInsets.all(12.0),
-                        child: Text(
-                          'I am a...',
-                          style:
-                              FlutterFlowTheme.of(context).titleLarge.override(
-                                    font: GoogleFonts.interTight(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleLarge
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleLarge
-                                          .fontStyle,
-                                    ),
-                                    color: Color(0xFFEFC641),
-                                    fontSize: 16.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleLarge
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleLarge
-                                        .fontStyle,
-                                  ),
-                        ),
-                      ),
-                    ),
-                    FlutterFlowDropDown<String>(
-                      controller: _model.roleSelectValueController ??=
-                          FormFieldController<String>(null),
-                      options: ['Boat Owner', 'Contractor'],
-                      onChanged: (val) =>
-                          safeSetState(() => _model.roleSelectValue = val),
-                      width: 200.0,
-                      height: 40.0,
-                      textStyle:
-                          FlutterFlowTheme.of(context).bodyMedium.override(
-                                font: GoogleFonts.inter(
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontStyle,
-                                ),
-                                letterSpacing: 0.0,
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontStyle,
-                              ),
-                      hintText: 'Select role...',
-                      icon: Icon(
-                        Icons.keyboard_arrow_down_rounded,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 24.0,
-                      ),
-                      fillColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      elevation: 2.0,
-                      borderColor: Colors.transparent,
-                      borderWidth: 0.0,
-                      borderRadius: 8.0,
-                      margin:
-                          EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
-                      hidesUnderline: true,
-                      isOverButton: false,
-                      isSearchable: false,
-                      isMultiSelect: false,
-                    ),
-                  ],
-                ),
-              ),
               Align(
                 alignment: AlignmentDirectional(0.0, -1.0),
                 child: Padding(
@@ -199,7 +118,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 12.0),
                   child: Container(
                     width: 340.3,
-                    height: 250.0,
+                    height: 350.0,
                     decoration: BoxDecoration(
                       color: Color(0x00FFFFFF),
                     ),
@@ -214,10 +133,108 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Padding(
+                              padding: EdgeInsets.all(12.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(12.0),
+                                      child: Text(
+                                        'I am a...',
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .override(
+                                              font: GoogleFonts.interTight(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleLarge
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleLarge
+                                                        .fontStyle,
+                                              ),
+                                              color: Color(0xFFEFC641),
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLarge
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLarge
+                                                      .fontStyle,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  FlutterFlowDropDown<String>(
+                                    controller:
+                                        _model.dropDownValueController ??=
+                                            FormFieldController<String>(
+                                      _model.dropDownValue ??= 'Boat Owner',
+                                    ),
+                                    options: ['Boat Owner', 'Contractor'],
+                                    onChanged: (val) => safeSetState(
+                                        () => _model.dropDownValue = val),
+                                    width: 200.0,
+                                    height: 40.0,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.inter(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
+                                          letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                    hintText: 'Select role...',
+                                    icon: Icon(
+                                      Icons.keyboard_arrow_down_rounded,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
+                                    fillColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    elevation: 2.0,
+                                    borderColor: Colors.transparent,
+                                    borderWidth: 0.0,
+                                    borderRadius: 8.0,
+                                    margin: EdgeInsetsDirectional.fromSTEB(
+                                        12.0, 0.0, 12.0, 0.0),
+                                    hidesUnderline: true,
+                                    isOverButton: false,
+                                    isSearchable: false,
+                                    isMultiSelect: false,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
                               padding: EdgeInsets.all(10.0),
                               child: Container(
                                 width: 200.0,
                                 child: TextFormField(
+                                  key: ValueKey('signup-email_zuoh'),
                                   controller: _model.signupEmailTextController,
                                   focusNode: _model.signupEmailFocusNode,
                                   autofocus: false,
@@ -344,6 +361,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               child: Container(
                                 width: 200.0,
                                 child: TextFormField(
+                                  key: ValueKey('signup-password_j7l7'),
                                   controller:
                                       _model.signupPasswordTextController,
                                   focusNode: _model.signupPasswordFocusNode,
@@ -483,6 +501,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               child: Container(
                                 width: 200.0,
                                 child: TextFormField(
+                                  key: ValueKey('signup-confirmpword_srmm'),
                                   controller:
                                       _model.signupConfirmpwordTextController,
                                   focusNode: _model.signupConfirmpwordFocusNode,
@@ -628,8 +647,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(12.0),
+                padding: EdgeInsets.all(24.0),
                 child: FFButtonWidget(
+                  key: ValueKey('signUpButton_hxvm'),
                   onPressed: () async {
                     logFirebaseEvent('SIGN_UP_PAGE_signUpButton_ON_TAP');
                     logFirebaseEvent('signUpButton_validate_form');
@@ -666,26 +686,27 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                           email: _model.signupEmailTextController.text,
                         ));
 
-                    if (_model.roleSelectValue == 'Boat Owner') {
+                    if (_model.dropDownValue == 'Boat Owner') {
                       logFirebaseEvent('signUpButton_backend_call');
 
                       await currentUserReference!.update(createUsersRecordData(
                         userRole: 'boat_owner',
+                        isCreated: false,
                       ));
                       logFirebaseEvent('signUpButton_navigate_to');
 
-                      context.pushNamedAuth(
-                          OwnerAccountCreationWidget.routeName,
+                      context.goNamedAuth(OwnerAccountCreationWidget.routeName,
                           context.mounted);
                     } else {
                       logFirebaseEvent('signUpButton_backend_call');
 
                       await currentUserReference!.update(createUsersRecordData(
                         userRole: 'contractor',
+                        isCreated: false,
                       ));
                       logFirebaseEvent('signUpButton_navigate_to');
 
-                      context.pushNamedAuth(
+                      context.goNamedAuth(
                           ContractorAccountCreationWidget.routeName,
                           context.mounted);
                     }
@@ -722,7 +743,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(12.0),
+                padding: EdgeInsets.all(24.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     logFirebaseEvent('SIGN_UP_PAGE_signUpButton_ON_TAP');

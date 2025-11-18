@@ -10,7 +10,8 @@ Future initFirebase() async {
             projectId: "martingale-app-5qaulz",
             storageBucket: "martingale-app-5qaulz.firebasestorage.app",
             messagingSenderId: "60320923553",
-            appId: "1:60320923553:web:cacd6766cda11ccb0015e0"));
+            appId: "1:60320923553:web:cacd6766cda11ccb0015e0",
+            measurementId: "G-J9QVKZV3K7"));
   } else {
     await Firebase.initializeApp();
   }

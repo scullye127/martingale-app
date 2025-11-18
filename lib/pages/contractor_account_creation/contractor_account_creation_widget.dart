@@ -57,6 +57,8 @@ class _ContractorAccountCreationWidgetState
 
     _model.textController8 ??= TextEditingController();
     _model.textFieldFocusNode7 ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -1059,6 +1061,7 @@ class _ContractorAccountCreationWidgetState
                       await currentUserReference!.update(createUsersRecordData(
                         phoneNumber: _model.textController2.text,
                         displayName: _model.nameTextController.text,
+                        isCreated: true,
                       ));
                       logFirebaseEvent('Button_backend_call');
 

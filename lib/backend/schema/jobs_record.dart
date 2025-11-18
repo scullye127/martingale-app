@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -36,29 +37,47 @@ class JobsRecord extends FirestoreRecord {
   DateTime? get timeCompleted => _timeCompleted;
   bool hasTimeCompleted() => _timeCompleted != null;
 
-  // "boat_owner" field.
-  String? _boatOwner;
-  String get boatOwner => _boatOwner ?? '';
-  bool hasBoatOwner() => _boatOwner != null;
+  // "description" field.
+  String? _description;
+  String get description => _description ?? '';
+  bool hasDescription() => _description != null;
 
   // "boat_name" field.
   String? _boatName;
   String get boatName => _boatName ?? '';
   bool hasBoatName() => _boatName != null;
 
-  // "description" field.
-  String? _description;
-  String get description => _description ?? '';
-  bool hasDescription() => _description != null;
+  // "boat_owner" field.
+  String? _boatOwner;
+  String get boatOwner => _boatOwner ?? '';
+  bool hasBoatOwner() => _boatOwner != null;
+
+  // "assigned_to" field.
+  String? _assignedTo;
+  String get assignedTo => _assignedTo ?? '';
+  bool hasAssignedTo() => _assignedTo != null;
+
+  // "media" field.
+  List<String>? _media;
+  List<String> get media => _media ?? const [];
+  bool hasMedia() => _media != null;
+
+  // "status" field.
+  String? _status;
+  String get status => _status ?? '';
+  bool hasStatus() => _status != null;
 
   void _initializeFields() {
     _title = snapshotData['title'] as String?;
     _timeCreated = snapshotData['time_created'] as DateTime?;
     _timeAssigned = snapshotData['time_assigned'] as DateTime?;
     _timeCompleted = snapshotData['time_completed'] as DateTime?;
-    _boatOwner = snapshotData['boat_owner'] as String?;
-    _boatName = snapshotData['boat_name'] as String?;
     _description = snapshotData['description'] as String?;
+    _boatName = snapshotData['boat_name'] as String?;
+    _boatOwner = snapshotData['boat_owner'] as String?;
+    _assignedTo = snapshotData['assigned_to'] as String?;
+    _media = getDataList(snapshotData['media']);
+    _status = snapshotData['status'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -99,9 +118,11 @@ Map<String, dynamic> createJobsRecordData({
   DateTime? timeCreated,
   DateTime? timeAssigned,
   DateTime? timeCompleted,
-  String? boatOwner,
-  String? boatName,
   String? description,
+  String? boatName,
+  String? boatOwner,
+  String? assignedTo,
+  String? status,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -109,9 +130,11 @@ Map<String, dynamic> createJobsRecordData({
       'time_created': timeCreated,
       'time_assigned': timeAssigned,
       'time_completed': timeCompleted,
-      'boat_owner': boatOwner,
-      'boat_name': boatName,
       'description': description,
+      'boat_name': boatName,
+      'boat_owner': boatOwner,
+      'assigned_to': assignedTo,
+      'status': status,
     }.withoutNulls,
   );
 
@@ -123,13 +146,17 @@ class JobsRecordDocumentEquality implements Equality<JobsRecord> {
 
   @override
   bool equals(JobsRecord? e1, JobsRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.title == e2?.title &&
         e1?.timeCreated == e2?.timeCreated &&
         e1?.timeAssigned == e2?.timeAssigned &&
         e1?.timeCompleted == e2?.timeCompleted &&
-        e1?.boatOwner == e2?.boatOwner &&
+        e1?.description == e2?.description &&
         e1?.boatName == e2?.boatName &&
-        e1?.description == e2?.description;
+        e1?.boatOwner == e2?.boatOwner &&
+        e1?.assignedTo == e2?.assignedTo &&
+        listEquality.equals(e1?.media, e2?.media) &&
+        e1?.status == e2?.status;
   }
 
   @override
@@ -138,9 +165,12 @@ class JobsRecordDocumentEquality implements Equality<JobsRecord> {
         e?.timeCreated,
         e?.timeAssigned,
         e?.timeCompleted,
-        e?.boatOwner,
+        e?.description,
         e?.boatName,
-        e?.description
+        e?.boatOwner,
+        e?.assignedTo,
+        e?.media,
+        e?.status
       ]);
 
   @override

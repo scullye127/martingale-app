@@ -31,16 +31,24 @@ class _DummyLoaderWidgetState extends State<DummyLoaderWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       logFirebaseEvent('DUMMY_LOADER_dummyLoader_ON_INIT_STATE');
-      if (valueOrDefault(currentUserDocument?.userRole, '') == 'boat_owner') {
+      if (valueOrDefault(currentUserDocument?.userRole, '') == 'admin') {
         logFirebaseEvent('dummyLoader_navigate_to');
 
-        context.goNamed(OwnerHomePageWidget.routeName);
+        context.goNamed(AdminPageSubmittedWidget.routeName);
       } else {
-        logFirebaseEvent('dummyLoader_navigate_to');
+        if (valueOrDefault(currentUserDocument?.userRole, '') == 'contractor') {
+          logFirebaseEvent('dummyLoader_navigate_to');
 
-        context.goNamed(ContractorHomePageWidget.routeName);
+          context.goNamed(ContractorHomePageWidget.routeName);
+        } else {
+          logFirebaseEvent('dummyLoader_navigate_to');
+
+          context.goNamed(OwnerHomePageWidget.routeName);
+        }
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

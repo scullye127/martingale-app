@@ -10,7 +10,7 @@ class OwnerAccountCreationModel
   final formKey = GlobalKey<FormState>();
   bool isDataUploading_profilePhoto = false;
   FFUploadedFile uploadedLocalFile_profilePhoto =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
   String uploadedFileUrl_profilePhoto = '';
 
   // State field(s) for TextField widget.

@@ -8,25 +8,13 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
-  // State field(s) for roleSelect widget.
-  String? roleSelectValue;
-  FormFieldController<String>? roleSelectValueController;
+  // State field(s) for DropDown widget.
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
   // State field(s) for signup-email widget.
   FocusNode? signupEmailFocusNode;
   TextEditingController? signupEmailTextController;
   String? Function(BuildContext, String?)? signupEmailTextControllerValidator;
-  String? _signupEmailTextControllerValidator(
-      BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Email is required';
-    }
-
-    if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
-      return 'Has to be a valid email address.';
-    }
-    return null;
-  }
-
   // State field(s) for signup-password widget.
   FocusNode? signupPasswordFocusNode;
   TextEditingController? signupPasswordTextController;
@@ -63,7 +51,6 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
 
   @override
   void initState(BuildContext context) {
-    signupEmailTextControllerValidator = _signupEmailTextControllerValidator;
     signupPasswordVisibility = false;
     signupPasswordTextControllerValidator =
         _signupPasswordTextControllerValidator;

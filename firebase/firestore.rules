@@ -1,7 +1,33 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /vessel_database/{document} {
+    match /users/{parent}/owner_database/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /users/{parent}/contractors/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /jobs/{parent}/sub_task/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/sub_task/{document} {
+      allow read: if true;
+    }
+
+
+    match /jobs/{document} {
       allow create: if true;
       allow read: if true;
       allow write: if false;
@@ -15,37 +41,11 @@ service cloud.firestore {
       allow delete: if request.auth.uid == document;
     }
 
-    match /users/{parent}/contractors/{document} {
-      allow create: if request.auth.uid == parent;
-      allow read: if request.auth.uid == parent;
-      allow write: if request.auth.uid == parent;
-      allow delete: if request.auth.uid == parent;
-    }
-
-    match /users/{parent}/owner_database/{document} {
-      allow create: if request.auth.uid == parent;
-      allow read: if request.auth.uid == parent;
-      allow write: if request.auth.uid == parent;
-      allow delete: if request.auth.uid == parent;
-    }
-
-    match /jobs/{document} {
+    match /vessel_database/{document} {
       allow create: if true;
       allow read: if true;
       allow write: if false;
       allow delete: if false;
     }
-
-    match /jobs/{parent}/sub_task/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if true;
-      allow delete: if true;
-    }
-
-    match /{path=**}/sub_task/{document} {
-      allow read: if true;
-    }
-
   }
 }
