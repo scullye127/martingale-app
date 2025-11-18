@@ -4,4 +4,4 @@
 
 <link to template slide> US3: Backend Management
 
-[<link to template slide>](https://docs.google.com/presentation/d/1qbDXd5X64rGHsi1NAgkAONpp2pF8SBu3aYHm-ZJ5Czw/edit?usp=sharing) US4: {Golden Path description}
+(https://docs.google.com/presentation/d/1qbDXd5X64rGHsi1NAgkAONpp2pF8SBu3aYHm-ZJ5Czw/edit?usp=sharing)US4: {Golden Path description}
