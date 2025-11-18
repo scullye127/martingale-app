@@ -42,6 +42,8 @@ void main() async {
     ));
     await GoogleFonts.pendingFonts();
 
+    await tester.pumpAndSettle(const Duration(milliseconds: 5000));
+    await tester.tap(find.byKey(const ValueKey('loginButtonBoat_nvqn')));
     await tester.pumpAndSettle(const Duration(milliseconds: 1000));
     await tester.tap(find.byKey(const ValueKey('signup-email_zuoh')));
     await tester.pumpAndSettle(const Duration(milliseconds: 500));
