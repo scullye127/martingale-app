@@ -71,7 +71,7 @@ class _AdminPageAssignedWidgetState extends State<AdminPageAssignedWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryText,
+        backgroundColor: Colors.black,
         appBar: AppBar(
           backgroundColor: Color(0xFF2B3745),
           automaticallyImplyLeading: false,
@@ -111,10 +111,13 @@ class _AdminPageAssignedWidgetState extends State<AdminPageAssignedWidget> {
                           FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                     ),
               ),
-              wrapWithModel(
-                model: _model.serviceRequestModel,
-                updateCallback: () => safeSetState(() {}),
-                child: ServiceRequestWidget(),
+              Padding(
+                padding: EdgeInsets.all(12.0),
+                child: wrapWithModel(
+                  model: _model.serviceRequestModel,
+                  updateCallback: () => safeSetState(() {}),
+                  child: ServiceRequestWidget(),
+                ),
               ),
               Align(
                 alignment: AlignmentDirectional(0.0, 1.0),

@@ -370,6 +370,7 @@ class _ContractorTaskWidgetState extends State<ContractorTaskWidget> {
                                         ),
                                       ),
                                       FFButtonWidget(
+                                        key: ValueKey('Button_znv0'),
                                         onPressed: () async {
                                           logFirebaseEvent(
                                               'CONTRACTOR_TASK_VIEW_MORE_BTN_ON_TAP');

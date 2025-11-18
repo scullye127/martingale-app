@@ -54,7 +54,7 @@ class _LoginWidgetState extends State<LoginWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryText,
+        backgroundColor: Colors.black,
         appBar: AppBar(
           backgroundColor: Color(0xFF2B3745),
           automaticallyImplyLeading: false,
@@ -389,7 +389,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Padding(
                                 padding: EdgeInsets.all(12.0),
                                 child: FFButtonWidget(

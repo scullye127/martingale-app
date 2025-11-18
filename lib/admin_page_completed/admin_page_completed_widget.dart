@@ -68,7 +68,7 @@ class _AdminPageCompletedWidgetState extends State<AdminPageCompletedWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryText,
+        backgroundColor: Colors.black,
         appBar: AppBar(
           backgroundColor: Color(0xFF2B3745),
           automaticallyImplyLeading: false,
@@ -108,10 +108,13 @@ class _AdminPageCompletedWidgetState extends State<AdminPageCompletedWidget> {
                           FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                     ),
               ),
-              wrapWithModel(
-                model: _model.serviceRequestModel,
-                updateCallback: () => safeSetState(() {}),
-                child: ServiceRequestWidget(),
+              Padding(
+                padding: EdgeInsets.all(12.0),
+                child: wrapWithModel(
+                  model: _model.serviceRequestModel,
+                  updateCallback: () => safeSetState(() {}),
+                  child: ServiceRequestWidget(),
+                ),
               ),
               Align(
                 alignment: AlignmentDirectional(0.0, 1.0),
@@ -119,67 +122,54 @@ class _AdminPageCompletedWidgetState extends State<AdminPageCompletedWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 50.0, 0.0),
-                        child: FlutterFlowIconButton(
-                          borderRadius: 8.0,
-                          buttonSize: 40.0,
-                          fillColor: FlutterFlowTheme.of(context).primary,
-                          icon: Icon(
-                            Icons.home_repair_service,
-                            color: FlutterFlowTheme.of(context).info,
-                            size: 24.0,
-                          ),
-                          onPressed: () async {
-                            logFirebaseEvent(
-                                'ADMIN_COMPLETED_home_repair_service_ICN_');
-                            logFirebaseEvent('IconButton_navigate_to');
+                      FlutterFlowIconButton(
+                        borderRadius: 8.0,
+                        buttonSize: 40.0,
+                        fillColor: FlutterFlowTheme.of(context).logoGrey,
+                        icon: Icon(
+                          Icons.home_repair_service,
+                          color: FlutterFlowTheme.of(context).logoYellow,
+                          size: 24.0,
+                        ),
+                        onPressed: () async {
+                          logFirebaseEvent(
+                              'ADMIN_COMPLETED_home_repair_service_ICN_');
+                          logFirebaseEvent('IconButton_navigate_to');
 
-                            context
-                                .pushNamed(AdminPageSubmittedWidget.routeName);
-                          },
-                        ),
+                          context.pushNamed(AdminPageSubmittedWidget.routeName);
+                        },
                       ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(75.0, 0.0, 0.0, 0.0),
-                        child: FlutterFlowIconButton(
-                          borderRadius: 8.0,
-                          buttonSize: 40.0,
-                          fillColor: FlutterFlowTheme.of(context).primary,
-                          icon: Icon(
-                            Icons.work_history,
-                            color: FlutterFlowTheme.of(context).info,
-                            size: 24.0,
-                          ),
-                          onPressed: () async {
-                            logFirebaseEvent(
-                                'ADMIN_COMPLETED_work_history_ICN_ON_TAP');
-                            logFirebaseEvent('IconButton_navigate_to');
+                      FlutterFlowIconButton(
+                        borderRadius: 8.0,
+                        buttonSize: 40.0,
+                        fillColor: FlutterFlowTheme.of(context).logoGrey,
+                        icon: Icon(
+                          Icons.work_history,
+                          color: FlutterFlowTheme.of(context).logoYellow,
+                          size: 24.0,
+                        ),
+                        onPressed: () async {
+                          logFirebaseEvent(
+                              'ADMIN_COMPLETED_work_history_ICN_ON_TAP');
+                          logFirebaseEvent('IconButton_navigate_to');
 
-                            context
-                                .pushNamed(AdminPageAssignedWidget.routeName);
-                          },
-                        ),
+                          context.pushNamed(AdminPageAssignedWidget.routeName);
+                        },
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            145.0, 0.0, 0.0, 0.0),
-                        child: FlutterFlowIconButton(
-                          borderRadius: 8.0,
-                          buttonSize: 40.0,
-                          fillColor: FlutterFlowTheme.of(context).primary,
-                          icon: Icon(
-                            Icons.check_circle,
-                            color: FlutterFlowTheme.of(context).info,
-                            size: 24.0,
-                          ),
-                          onPressed: () {
-                            print('IconButton pressed ...');
-                          },
+                      FlutterFlowIconButton(
+                        borderRadius: 8.0,
+                        buttonSize: 40.0,
+                        fillColor: FlutterFlowTheme.of(context).logoGrey,
+                        icon: Icon(
+                          Icons.check_circle,
+                          color: FlutterFlowTheme.of(context).logoYellow,
+                          size: 24.0,
                         ),
+                        onPressed: () {
+                          print('IconButton pressed ...');
+                        },
                       ),
                     ],
                   ),

@@ -82,6 +82,25 @@ void main() async {
     await tester.pumpAndSettle(const Duration(milliseconds: 3000));
     expect(find.text('Owner Dashboard'), findsOneWidget);
   });
+
+  testWidgets('US 4 - Contractor Fix Boats', (WidgetTester tester) async {
+    _overrideOnError();
+
+    await tester.pumpWidget(ChangeNotifierProvider(
+      create: (context) => FFAppState(),
+      child: MyApp(
+        entryPage: ContractorHomePageWidget(),
+      ),
+    ));
+    await GoogleFonts.pendingFonts();
+
+    await tester.tap(find.descendant(
+      of: find.byKey(const ValueKey('contractorTask_gme1')),
+      matching: find.byKey(const ValueKey('Button_znv0')),
+    ));
+    await tester.pumpAndSettle(const Duration(milliseconds: 3000));
+    expect(find.text('Update Details'), findsOneWidget);
+  });
 }
 
 // There are certain types of errors that can happen during tests but

@@ -115,13 +115,43 @@ class _OwnerHomePageWidgetState extends State<OwnerHomePageWidget> {
             ),
             body: SafeArea(
               top: true,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
-                    child: FFButtonWidget(
+              child: Align(
+                alignment: AlignmentDirectional(0.0, 0.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(40.0, 0.0, 40.0, 30.0),
+                      child: AuthUserStreamWidget(
+                        builder: (context) => Text(
+                          'Welcome To Martingale ${currentUserDisplayName}',
+                          textAlign: TextAlign.center,
+                          style: FlutterFlowTheme.of(context)
+                              .headlineMedium
+                              .override(
+                                font: GoogleFonts.interTight(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .headlineMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .headlineMedium
+                                      .fontStyle,
+                                ),
+                                color: FlutterFlowTheme.of(context).logoYellow,
+                                letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .headlineMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .headlineMedium
+                                    .fontStyle,
+                              ),
+                        ),
+                      ),
+                    ),
+                    FFButtonWidget(
                       onPressed: () async {
                         logFirebaseEvent('OWNER_HOME_boatAddButton_ON_TAP');
                         logFirebaseEvent('boatAddButton_navigate_to');
@@ -130,65 +160,58 @@ class _OwnerHomePageWidgetState extends State<OwnerHomePageWidget> {
                       },
                       text: 'Submit a Service Request',
                       options: FFButtonOptions(
-                        width: double.infinity,
+                        width: MediaQuery.sizeOf(context).width * 0.6,
                         height: 40.0,
                         padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  font: GoogleFonts.interTight(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontStyle,
-                                  ),
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .fontStyle,
-                                ),
+                        color: Colors.black,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .titleSmall
+                            .override(
+                              font: GoogleFonts.interTight(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .fontStyle,
+                              ),
+                              color: FlutterFlowTheme.of(context).logoYellow,
+                              letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .fontStyle,
+                            ),
                         elevation: 0.0,
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
-                  ),
-                  FFButtonWidget(
-                    onPressed: () async {
-                      logFirebaseEvent('OWNER_HOME_boatAddButton_ON_TAP');
-                      logFirebaseEvent('boatAddButton_navigate_to');
+                    FFButtonWidget(
+                      onPressed: () async {
+                        logFirebaseEvent(
+                            'OWNER_HOME_PAGE_PAGE_ViewTickets_ON_TAP');
+                        logFirebaseEvent('ViewTickets_navigate_to');
 
-                      context.pushNamed(BoatCreateOwnerWidget.routeName);
-                    },
-                    text: 'Add a Boat',
-                    options: FFButtonOptions(
-                      width: double.infinity,
-                      height: 40.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                font: GoogleFonts.interTight(
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .fontStyle,
-                                ),
-                                color: Colors.white,
-                                letterSpacing: 0.0,
+                        context.pushNamed(OwnerHomePageTicketsWidget.routeName);
+                      },
+                      text: 'View My Service Requests',
+                      options: FFButtonOptions(
+                        width: MediaQuery.sizeOf(context).width * 0.6,
+                        height: 40.0,
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: Colors.black,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .titleSmall
+                            .override(
+                              font: GoogleFonts.interTight(
                                 fontWeight: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .fontWeight,
@@ -196,47 +219,39 @@ class _OwnerHomePageWidgetState extends State<OwnerHomePageWidget> {
                                     .titleSmall
                                     .fontStyle,
                               ),
-                      elevation: 0.0,
-                      borderRadius: BorderRadius.circular(8.0),
+                              color: FlutterFlowTheme.of(context).logoYellow,
+                              letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .fontStyle,
+                            ),
+                        elevation: 0.0,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
                     ),
-                  ),
-                  FFButtonWidget(
-                    onPressed: () async {
-                      logFirebaseEvent('OWNER_HOME_boatEditButton_ON_TAP');
-                      logFirebaseEvent('boatEditButton_navigate_to');
+                    FFButtonWidget(
+                      onPressed: () async {
+                        logFirebaseEvent('OWNER_HOME_boatAddButton_ON_TAP');
+                        logFirebaseEvent('boatAddButton_navigate_to');
 
-                      context.goNamed(BoatInformationWidget.routeName);
-
-                      logFirebaseEvent('boatEditButton_update_app_state');
-                      FFAppState().currentBoat = _model.boatList
-                          .where((e) =>
-                              ownerHomePageVesselDatabaseRecord?.ownerName ==
-                              currentUserDisplayName)
-                          .toList()
-                          .firstOrNull;
-                      safeSetState(() {});
-                    },
-                    text: 'Edit a Boat',
-                    options: FFButtonOptions(
-                      width: double.infinity,
-                      height: 40.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                font: GoogleFonts.interTight(
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .fontStyle,
-                                ),
-                                color: Colors.white,
-                                letterSpacing: 0.0,
+                        context.pushNamed(BoatCreateOwnerWidget.routeName);
+                      },
+                      text: 'Add a Boat',
+                      options: FFButtonOptions(
+                        width: MediaQuery.sizeOf(context).width * 0.6,
+                        height: 40.0,
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: Colors.black,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .titleSmall
+                            .override(
+                              font: GoogleFonts.interTight(
                                 fontWeight: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .fontWeight,
@@ -244,42 +259,48 @@ class _OwnerHomePageWidgetState extends State<OwnerHomePageWidget> {
                                     .titleSmall
                                     .fontStyle,
                               ),
-                      elevation: 0.0,
-                      borderRadius: BorderRadius.circular(8.0),
+                              color: FlutterFlowTheme.of(context).logoYellow,
+                              letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .fontStyle,
+                            ),
+                        elevation: 0.0,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
                     ),
-                  ),
-                  FFButtonWidget(
-                    onPressed: () async {
-                      logFirebaseEvent('OWNER_HOME_LOGOUTTESTING_BTN_ON_TAP');
-                      logFirebaseEvent('Button_auth');
-                      GoRouter.of(context).prepareAuthEvent();
-                      await authManager.signOut();
-                      GoRouter.of(context).clearRedirectLocation();
+                    FFButtonWidget(
+                      onPressed: () async {
+                        logFirebaseEvent('OWNER_HOME_boatEditButton_ON_TAP');
+                        logFirebaseEvent('boatEditButton_navigate_to');
 
-                      context.goNamedAuth(
-                          LoginWidget.routeName, context.mounted);
-                    },
-                    text: 'Logout(testing)',
-                    options: FFButtonOptions(
-                      width: double.infinity,
-                      height: 40.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                font: GoogleFonts.interTight(
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .fontStyle,
-                                ),
-                                color: Colors.white,
-                                letterSpacing: 0.0,
+                        context.goNamed(BoatInformationWidget.routeName);
+
+                        logFirebaseEvent('boatEditButton_update_app_state');
+                        FFAppState().currentBoat = _model.boatList
+                            .where((e) =>
+                                ownerHomePageVesselDatabaseRecord?.ownerName ==
+                                currentUserDisplayName)
+                            .toList()
+                            .firstOrNull;
+                        safeSetState(() {});
+                      },
+                      text: 'Edit a Boat',
+                      options: FFButtonOptions(
+                        width: MediaQuery.sizeOf(context).width * 0.6,
+                        height: 40.0,
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: Colors.black,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .titleSmall
+                            .override(
+                              font: GoogleFonts.interTight(
                                 fontWeight: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .fontWeight,
@@ -287,39 +308,43 @@ class _OwnerHomePageWidgetState extends State<OwnerHomePageWidget> {
                                     .titleSmall
                                     .fontStyle,
                               ),
-                      elevation: 0.0,
-                      borderRadius: BorderRadius.circular(8.0),
+                              color: FlutterFlowTheme.of(context).logoYellow,
+                              letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .fontStyle,
+                            ),
+                        elevation: 0.0,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
                     ),
-                  ),
-                  FFButtonWidget(
-                    onPressed: () async {
-                      logFirebaseEvent(
-                          'OWNER_HOME_PAGE_PAGE_ViewTickets_ON_TAP');
-                      logFirebaseEvent('ViewTickets_navigate_to');
+                    FFButtonWidget(
+                      onPressed: () async {
+                        logFirebaseEvent('OWNER_HOME_LOGOUTTESTING_BTN_ON_TAP');
+                        logFirebaseEvent('Button_auth');
+                        GoRouter.of(context).prepareAuthEvent();
+                        await authManager.signOut();
+                        GoRouter.of(context).clearRedirectLocation();
 
-                      context.pushNamed(OwnerHomePageTicketsWidget.routeName);
-                    },
-                    text: 'My Service Requests',
-                    options: FFButtonOptions(
-                      width: double.infinity,
-                      height: 40.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                font: GoogleFonts.interTight(
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .fontStyle,
-                                ),
-                                color: Colors.white,
-                                letterSpacing: 0.0,
+                        context.goNamedAuth(
+                            LoginWidget.routeName, context.mounted);
+                      },
+                      text: 'Logout(testing)',
+                      options: FFButtonOptions(
+                        width: MediaQuery.sizeOf(context).width * 0.6,
+                        height: 40.0,
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: Colors.black,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .titleSmall
+                            .override(
+                              font: GoogleFonts.interTight(
                                 fontWeight: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .fontWeight,
@@ -327,11 +352,21 @@ class _OwnerHomePageWidgetState extends State<OwnerHomePageWidget> {
                                     .titleSmall
                                     .fontStyle,
                               ),
-                      elevation: 0.0,
-                      borderRadius: BorderRadius.circular(8.0),
+                              color: FlutterFlowTheme.of(context).logoYellow,
+                              letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .fontStyle,
+                            ),
+                        elevation: 0.0,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
                     ),
-                  ),
-                ],
+                  ].divide(SizedBox(height: 20.0)),
+                ),
               ),
             ),
           ),

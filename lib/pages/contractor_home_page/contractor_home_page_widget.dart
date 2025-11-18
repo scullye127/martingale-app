@@ -101,7 +101,9 @@ class _ContractorHomePageWidgetState extends State<ContractorHomePageWidget> {
                       wrapWithModel(
                         model: _model.contractorTaskModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: ContractorTaskWidget(),
+                        child: ContractorTaskWidget(
+                          key: ValueKey('contractorTask_gme1'),
+                        ),
                       ),
                       FFButtonWidget(
                         onPressed: () async {

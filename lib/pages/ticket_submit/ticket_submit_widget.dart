@@ -91,7 +91,7 @@ class _TicketSubmitWidgetState extends State<TicketSubmitWidget>
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryText,
+        backgroundColor: Colors.black,
         appBar: AppBar(
           backgroundColor: Color(0xFF2B3745),
           automaticallyImplyLeading: false,

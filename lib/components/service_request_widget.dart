@@ -71,20 +71,33 @@ class _ServiceRequestWidgetState extends State<ServiceRequestWidget> {
               itemBuilder: (context, listViewIndex) {
                 final listViewJobsRecord =
                     listViewJobsRecordList[listViewIndex];
-                return Container(
-                  width: 100.0,
-                  height: 97.8,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        listViewJobsRecord.boatOwner,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: GoogleFonts.inter(
+                return Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                  child: Container(
+                    width: 100.0,
+                    height: 131.5,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).logoGrey,
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          listViewJobsRecord.boatOwner,
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                font: GoogleFonts.inter(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
+                                ),
+                                color: FlutterFlowTheme.of(context).logoYellow,
+                                letterSpacing: 0.0,
                                 fontWeight: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .fontWeight,
@@ -92,101 +105,102 @@ class _ServiceRequestWidgetState extends State<ServiceRequestWidget> {
                                     .bodyMedium
                                     .fontStyle,
                               ),
-                              letterSpacing: 0.0,
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontStyle,
-                            ),
-                      ),
-                      Text(
-                        valueOrDefault<String>(
-                          dateTimeFormat(
-                              "M/d h:mm a", listViewJobsRecord.timeCreated),
-                          '00:00',
                         ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: GoogleFonts.inter(
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontStyle,
-                              ),
-                              letterSpacing: 0.0,
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontStyle,
-                            ),
-                      ),
-                      Text(
-                        listViewJobsRecord.title,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: GoogleFonts.inter(
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontStyle,
-                              ),
-                              letterSpacing: 0.0,
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontStyle,
-                            ),
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
-                            child: FlutterFlowIconButton(
-                              borderRadius: 8.0,
-                              buttonSize: 40.0,
-                              fillColor: FlutterFlowTheme.of(context).primary,
-                              icon: Icon(
-                                Icons.expand,
-                                color: FlutterFlowTheme.of(context).info,
-                                size: 24.0,
-                              ),
-                              onPressed: () async {
-                                logFirebaseEvent(
-                                    'SERVICE_REQUEST_COMP_expandTask_ON_TAP');
-                                logFirebaseEvent('expandTask_navigate_to');
-
-                                context.pushNamed(
-                                  TaskDetailsWidget.routeName,
-                                  queryParameters: {
-                                    'task': serializeParam(
-                                      listViewJobsRecord,
-                                      ParamType.Document,
-                                    ),
-                                  }.withoutNulls,
-                                  extra: <String, dynamic>{
-                                    'task': listViewJobsRecord,
-                                    kTransitionInfoKey: TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType:
-                                          PageTransitionType.bottomToTop,
-                                    ),
-                                  },
-                                );
-                              },
-                            ),
+                        Text(
+                          valueOrDefault<String>(
+                            dateTimeFormat(
+                                "M/d h:mm a", listViewJobsRecord.timeCreated),
+                            '00:00',
                           ),
-                        ],
-                      ),
-                    ],
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                font: GoogleFonts.inter(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
+                                ),
+                                color: FlutterFlowTheme.of(context).logoYellow,
+                                letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
+                              ),
+                        ),
+                        Text(
+                          listViewJobsRecord.title,
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                font: GoogleFonts.inter(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
+                                ),
+                                color: FlutterFlowTheme.of(context).logoYellow,
+                                letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
+                              ),
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Align(
+                              alignment: AlignmentDirectional(-1.0, 0.0),
+                              child: FlutterFlowIconButton(
+                                borderRadius: 8.0,
+                                buttonSize: 40.0,
+                                fillColor: Colors.black,
+                                icon: Icon(
+                                  Icons.expand,
+                                  color:
+                                      FlutterFlowTheme.of(context).logoYellow,
+                                  size: 24.0,
+                                ),
+                                onPressed: () async {
+                                  logFirebaseEvent(
+                                      'SERVICE_REQUEST_COMP_expandTask_ON_TAP');
+                                  logFirebaseEvent('expandTask_navigate_to');
+
+                                  context.pushNamed(
+                                    TaskDetailsWidget.routeName,
+                                    queryParameters: {
+                                      'task': serializeParam(
+                                        listViewJobsRecord,
+                                        ParamType.Document,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      'task': listViewJobsRecord,
+                                      kTransitionInfoKey: TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType:
+                                            PageTransitionType.bottomToTop,
+                                      ),
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ].divide(SizedBox(height: 10.0)),
+                    ),
                   ),
                 );
               },

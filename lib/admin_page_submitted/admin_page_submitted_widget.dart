@@ -91,7 +91,9 @@ class _AdminPageSubmittedWidgetState extends State<AdminPageSubmittedWidget> {
           child: Container(
             width: double.infinity,
             height: double.infinity,
-            decoration: BoxDecoration(),
+            decoration: BoxDecoration(
+              color: Colors.black,
+            ),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -178,7 +180,7 @@ class _AdminPageSubmittedWidgetState extends State<AdminPageSubmittedWidget> {
                             16.0, 0.0, 16.0, 0.0),
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primary,
+                        color: FlutterFlowTheme.of(context).logoGrey,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   font: GoogleFonts.interTight(
@@ -224,7 +226,7 @@ class _AdminPageSubmittedWidgetState extends State<AdminPageSubmittedWidget> {
                             16.0, 0.0, 16.0, 0.0),
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primary,
+                        color: FlutterFlowTheme.of(context).logoGrey,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   font: GoogleFonts.interTight(
@@ -249,76 +251,72 @@ class _AdminPageSubmittedWidgetState extends State<AdminPageSubmittedWidget> {
                       ),
                     ),
                   ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 50.0, 0.0),
-                        child: FlutterFlowIconButton(
-                          borderRadius: 8.0,
-                          buttonSize: 40.0,
-                          fillColor: FlutterFlowTheme.of(context).primary,
-                          icon: Icon(
-                            Icons.home_repair_service,
-                            color: FlutterFlowTheme.of(context).info,
-                            size: 24.0,
-                          ),
-                          onPressed: () async {
-                            logFirebaseEvent(
-                                'ADMIN_SUBMITTED_home_repair_service_ICN_');
-                            logFirebaseEvent('IconButton_navigate_to');
+                  Align(
+                    alignment: AlignmentDirectional(0.0, 1.0),
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          FlutterFlowIconButton(
+                            borderRadius: 8.0,
+                            buttonSize: 40.0,
+                            fillColor: FlutterFlowTheme.of(context).logoGrey,
+                            icon: Icon(
+                              Icons.home_repair_service,
+                              color: FlutterFlowTheme.of(context).logoYellow,
+                              size: 24.0,
+                            ),
+                            onPressed: () async {
+                              logFirebaseEvent(
+                                  'ADMIN_SUBMITTED_home_repair_service_ICN_');
+                              logFirebaseEvent('IconButton_navigate_to');
 
-                            context
-                                .pushNamed(AdminPageSubmittedWidget.routeName);
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(75.0, 0.0, 0.0, 0.0),
-                        child: FlutterFlowIconButton(
-                          borderRadius: 8.0,
-                          buttonSize: 40.0,
-                          fillColor: FlutterFlowTheme.of(context).primary,
-                          icon: Icon(
-                            Icons.work_history,
-                            color: FlutterFlowTheme.of(context).info,
-                            size: 24.0,
+                              context.pushNamed(
+                                  AdminPageSubmittedWidget.routeName);
+                            },
                           ),
-                          onPressed: () async {
-                            logFirebaseEvent(
-                                'ADMIN_SUBMITTED_work_history_ICN_ON_TAP');
-                            logFirebaseEvent('IconButton_navigate_to');
+                          FlutterFlowIconButton(
+                            borderRadius: 8.0,
+                            buttonSize: 40.0,
+                            fillColor: FlutterFlowTheme.of(context).logoGrey,
+                            icon: Icon(
+                              Icons.work_history,
+                              color: FlutterFlowTheme.of(context).logoYellow,
+                              size: 24.0,
+                            ),
+                            onPressed: () async {
+                              logFirebaseEvent(
+                                  'ADMIN_SUBMITTED_work_history_ICN_ON_TAP');
+                              logFirebaseEvent('IconButton_navigate_to');
 
-                            context
-                                .pushNamed(AdminPageAssignedWidget.routeName);
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            145.0, 0.0, 0.0, 0.0),
-                        child: FlutterFlowIconButton(
-                          borderRadius: 8.0,
-                          buttonSize: 40.0,
-                          fillColor: FlutterFlowTheme.of(context).primary,
-                          icon: Icon(
-                            Icons.check_circle,
-                            color: FlutterFlowTheme.of(context).info,
-                            size: 24.0,
+                              context
+                                  .pushNamed(AdminPageAssignedWidget.routeName);
+                            },
                           ),
-                          onPressed: () async {
-                            logFirebaseEvent(
-                                'ADMIN_SUBMITTED_check_circle_ICN_ON_TAP');
-                            logFirebaseEvent('IconButton_navigate_to');
+                          FlutterFlowIconButton(
+                            borderRadius: 8.0,
+                            buttonSize: 40.0,
+                            fillColor: FlutterFlowTheme.of(context).logoGrey,
+                            icon: Icon(
+                              Icons.check_circle,
+                              color: FlutterFlowTheme.of(context).logoYellow,
+                              size: 24.0,
+                            ),
+                            onPressed: () async {
+                              logFirebaseEvent(
+                                  'ADMIN_SUBMITTED_check_circle_ICN_ON_TAP');
+                              logFirebaseEvent('IconButton_navigate_to');
 
-                            context
-                                .pushNamed(AdminPageCompletedWidget.routeName);
-                          },
-                        ),
+                              context.pushNamed(
+                                  AdminPageCompletedWidget.routeName);
+                            },
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ],
               ),
