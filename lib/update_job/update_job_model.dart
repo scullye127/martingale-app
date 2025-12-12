@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'update_job_widget.dart' show UpdateJobWidget;
 import 'package:flutter/material.dart';
 
@@ -7,8 +8,13 @@ class UpdateJobModel extends FlutterFlowModel<UpdateJobWidget> {
 
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
+  TextEditingController? textController1;
+  String? Function(BuildContext, String?)? textController1Validator;
+  // State field(s) for ContractrorDetails widget.
+  FocusNode? contractrorDetailsFocusNode;
+  TextEditingController? contractrorDetailsTextController;
+  String? Function(BuildContext, String?)?
+      contractrorDetailsTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
@@ -16,6 +22,9 @@ class UpdateJobModel extends FlutterFlowModel<UpdateJobWidget> {
   @override
   void dispose() {
     textFieldFocusNode?.dispose();
-    textController?.dispose();
+    textController1?.dispose();
+
+    contractrorDetailsFocusNode?.dispose();
+    contractrorDetailsTextController?.dispose();
   }
 }

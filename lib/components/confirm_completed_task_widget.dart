@@ -12,9 +12,11 @@ class ConfirmCompletedTaskWidget extends StatefulWidget {
   const ConfirmCompletedTaskWidget({
     super.key,
     required this.job,
+    this.contractrorDetails,
   });
 
   final DocumentReference? job;
+  final String? contractrorDetails;
 
   @override
   State<ConfirmCompletedTaskWidget> createState() =>
@@ -90,6 +92,7 @@ class _ConfirmCompletedTaskWidgetState
 
                   await widget.job!.update(createJobsRecordData(
                     status: 'completed',
+                    contractorDetails: widget.contractrorDetails,
                   ));
                   logFirebaseEvent('Button_navigate_to');
 

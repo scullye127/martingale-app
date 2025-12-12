@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '/backend/backend.dart';
-import 'flutter_flow/flutter_flow_util.dart';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -94,11 +92,5 @@ class FFAppState extends ChangeNotifier {
 
   void insertAtIndexInContractorList(int index, String value) {
     contractorList.insert(index, value);
-  }
-
-  DocumentReference? _currentBoat;
-  DocumentReference? get currentBoat => _currentBoat;
-  set currentBoat(DocumentReference? value) {
-    _currentBoat = value;
   }
 }

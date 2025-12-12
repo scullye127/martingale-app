@@ -278,7 +278,6 @@ class _CreateSubtask1WidgetState extends State<CreateSubtask1Widget> {
                         await SubTaskRecord.createDoc(
                                 widget.taskDetails!.reference)
                             .set(createSubTaskRecordData(
-                          jobId: '',
                           assignedContractor: '',
                           jobDescription: '',
                           boatName: '',

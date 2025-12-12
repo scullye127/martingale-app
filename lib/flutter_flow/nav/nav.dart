@@ -89,19 +89,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
               : LoginWidget(),
         ),
         FFRoute(
-          name: DummyLoaderWidget.routeName,
-          path: DummyLoaderWidget.routePath,
-          builder: (context, params) => DummyLoaderWidget(),
-        ),
-        FFRoute(
           name: CompleteJobWidget.routeName,
           path: CompleteJobWidget.routePath,
           builder: (context, params) => CompleteJobWidget(),
-        ),
-        FFRoute(
-          name: LoginWidget.routeName,
-          path: LoginWidget.routePath,
-          builder: (context, params) => LoginWidget(),
         ),
         FFRoute(
           name: AssignContractorWidget.routeName,
@@ -122,6 +112,31 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           ),
         ),
         FFRoute(
+          name: ContractorAccountCreationWidget.routeName,
+          path: ContractorAccountCreationWidget.routePath,
+          builder: (context, params) => ContractorAccountCreationWidget(),
+        ),
+        FFRoute(
+          name: ContractorHomePageWidget.routeName,
+          path: ContractorHomePageWidget.routePath,
+          builder: (context, params) => ContractorHomePageWidget(),
+        ),
+        FFRoute(
+          name: OwnerHomePageTicketsWidget.routeName,
+          path: OwnerHomePageTicketsWidget.routePath,
+          builder: (context, params) => OwnerHomePageTicketsWidget(),
+        ),
+        FFRoute(
+          name: DummyLoaderWidget.routeName,
+          path: DummyLoaderWidget.routePath,
+          builder: (context, params) => DummyLoaderWidget(),
+        ),
+        FFRoute(
+          name: LoginWidget.routeName,
+          path: LoginWidget.routePath,
+          builder: (context, params) => LoginWidget(),
+        ),
+        FFRoute(
           name: AdminPageAssignedWidget.routeName,
           path: AdminPageAssignedWidget.routePath,
           builder: (context, params) => AdminPageAssignedWidget(),
@@ -132,11 +147,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => AdminPageCompletedWidget(),
         ),
         FFRoute(
-          name: ContractorAccountCreationWidget.routeName,
-          path: ContractorAccountCreationWidget.routePath,
-          builder: (context, params) => ContractorAccountCreationWidget(),
-        ),
-        FFRoute(
           name: OwnerAccountCreationWidget.routeName,
           path: OwnerAccountCreationWidget.routePath,
           builder: (context, params) => OwnerAccountCreationWidget(),
@@ -145,36 +155,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           name: SignUpWidget.routeName,
           path: SignUpWidget.routePath,
           builder: (context, params) => SignUpWidget(),
-        ),
-        FFRoute(
-          name: OwnerHomePageWidget.routeName,
-          path: OwnerHomePageWidget.routePath,
-          builder: (context, params) => OwnerHomePageWidget(),
-        ),
-        FFRoute(
-          name: BoatCreateOwnerWidget.routeName,
-          path: BoatCreateOwnerWidget.routePath,
-          builder: (context, params) => BoatCreateOwnerWidget(),
-        ),
-        FFRoute(
-          name: BoatCreateAdminWidget.routeName,
-          path: BoatCreateAdminWidget.routePath,
-          builder: (context, params) => BoatCreateAdminWidget(),
-        ),
-        FFRoute(
-          name: AdminPageSubmittedWidget.routeName,
-          path: AdminPageSubmittedWidget.routePath,
-          builder: (context, params) => AdminPageSubmittedWidget(),
-        ),
-        FFRoute(
-          name: BoatInformationWidget.routeName,
-          path: BoatInformationWidget.routePath,
-          builder: (context, params) => BoatInformationWidget(),
-        ),
-        FFRoute(
-          name: TicketSubmitWidget.routeName,
-          path: TicketSubmitWidget.routePath,
-          builder: (context, params) => TicketSubmitWidget(),
         ),
         FFRoute(
           name: TaskDetailsWidget.routeName,
@@ -190,16 +170,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           ),
         ),
         FFRoute(
-          name: ContractorHomePageWidget.routeName,
-          path: ContractorHomePageWidget.routePath,
-          builder: (context, params) => ContractorHomePageWidget(),
-        ),
-        FFRoute(
-          name: OwnerHomePageTicketsWidget.routeName,
-          path: OwnerHomePageTicketsWidget.routePath,
-          builder: (context, params) => OwnerHomePageTicketsWidget(),
-        ),
-        FFRoute(
           name: UpdateJobWidget.routeName,
           path: UpdateJobWidget.routePath,
           builder: (context, params) => UpdateJobWidget(
@@ -212,14 +182,111 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           ),
         ),
         FFRoute(
-          name: AdminPageNewCompletedWidget.routeName,
-          path: AdminPageNewCompletedWidget.routePath,
-          builder: (context, params) => AdminPageNewCompletedWidget(),
+          name: BoatListOwnerWidget.routeName,
+          path: BoatListOwnerWidget.routePath,
+          builder: (context, params) => BoatListOwnerWidget(),
+        ),
+        FFRoute(
+          name: BoatInfoWidget.routeName,
+          path: BoatInfoWidget.routePath,
+          builder: (context, params) => BoatInfoWidget(
+            boatDoc: params.getParam(
+              'boatDoc',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['users', 'vessels'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: BoatCreateOwnerWidget.routeName,
+          path: BoatCreateOwnerWidget.routePath,
+          builder: (context, params) => BoatCreateOwnerWidget(),
+        ),
+        FFRoute(
+          name: AdminHomeWidget.routeName,
+          path: AdminHomeWidget.routePath,
+          builder: (context, params) => AdminHomeWidget(),
+        ),
+        FFRoute(
+          name: AdminBoatListWidget.routeName,
+          path: AdminBoatListWidget.routePath,
+          builder: (context, params) => AdminBoatListWidget(),
         ),
         FFRoute(
           name: AdminPageNewAssignedWidget.routeName,
           path: AdminPageNewAssignedWidget.routePath,
           builder: (context, params) => AdminPageNewAssignedWidget(),
+        ),
+        FFRoute(
+          name: AdminPageNewCompletedWidget.routeName,
+          path: AdminPageNewCompletedWidget.routePath,
+          builder: (context, params) => AdminPageNewCompletedWidget(),
+        ),
+        FFRoute(
+          name: OwnerHomePageWidget.routeName,
+          path: OwnerHomePageWidget.routePath,
+          builder: (context, params) => OwnerHomePageWidget(),
+        ),
+        FFRoute(
+          name: AdminPageSubmittedWidget.routeName,
+          path: AdminPageSubmittedWidget.routePath,
+          builder: (context, params) => AdminPageSubmittedWidget(),
+        ),
+        FFRoute(
+          name: TicketSubmitWidget.routeName,
+          path: TicketSubmitWidget.routePath,
+          builder: (context, params) => TicketSubmitWidget(),
+        ),
+        FFRoute(
+          name: AddComponentWidget.routeName,
+          path: AddComponentWidget.routePath,
+          builder: (context, params) => AddComponentWidget(
+            partsList: params.getParam<PartStruct>(
+              'partsList',
+              ParamType.DataStruct,
+              isList: true,
+              structBuilder: PartStruct.fromSerializableMap,
+            ),
+            partsRef: params.getParam(
+              'partsRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['parts_list'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: UpdateComponentWidget.routeName,
+          path: UpdateComponentWidget.routePath,
+          builder: (context, params) => UpdateComponentWidget(
+            partsList: params.getParam<PartStruct>(
+              'partsList',
+              ParamType.DataStruct,
+              isList: true,
+              structBuilder: PartStruct.fromSerializableMap,
+            ),
+            partsRef: params.getParam(
+              'partsRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['parts_list'],
+            ),
+            indexToUpdate: params.getParam(
+              'indexToUpdate',
+              ParamType.int,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: CustomViewWidget.routeName,
+          path: CustomViewWidget.routePath,
+          builder: (context, params) => CustomViewWidget(),
+        ),
+        FFRoute(
+          name: LoginCopyWidget.routeName,
+          path: LoginCopyWidget.routePath,
+          builder: (context, params) => LoginCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
@@ -340,6 +407,7 @@ class FFParameters {
     ParamType type, {
     bool isList = false,
     List<String>? collectionNamePath,
+    StructBuilder<T>? structBuilder,
   }) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -358,6 +426,7 @@ class FFParameters {
       type,
       isList,
       collectionNamePath: collectionNamePath,
+      structBuilder: structBuilder,
     );
   }
 }

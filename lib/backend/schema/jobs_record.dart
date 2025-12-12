@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -67,6 +66,31 @@ class JobsRecord extends FirestoreRecord {
   String get status => _status ?? '';
   bool hasStatus() => _status != null;
 
+  // "owner_number" field.
+  String? _ownerNumber;
+  String get ownerNumber => _ownerNumber ?? '';
+  bool hasOwnerNumber() => _ownerNumber != null;
+
+  // "contractor_details" field.
+  String? _contractorDetails;
+  String get contractorDetails => _contractorDetails ?? '';
+  bool hasContractorDetails() => _contractorDetails != null;
+
+  // "boat_reference" field.
+  DocumentReference? _boatReference;
+  DocumentReference? get boatReference => _boatReference;
+  bool hasBoatReference() => _boatReference != null;
+
+  // "videomedia" field.
+  List<String>? _videomedia;
+  List<String> get videomedia => _videomedia ?? const [];
+  bool hasVideomedia() => _videomedia != null;
+
+  // "job_ID" field.
+  String? _jobID;
+  String get jobID => _jobID ?? '';
+  bool hasJobID() => _jobID != null;
+
   void _initializeFields() {
     _title = snapshotData['title'] as String?;
     _timeCreated = snapshotData['time_created'] as DateTime?;
@@ -78,6 +102,11 @@ class JobsRecord extends FirestoreRecord {
     _assignedTo = snapshotData['assigned_to'] as String?;
     _media = getDataList(snapshotData['media']);
     _status = snapshotData['status'] as String?;
+    _ownerNumber = snapshotData['owner_number'] as String?;
+    _contractorDetails = snapshotData['contractor_details'] as String?;
+    _boatReference = snapshotData['boat_reference'] as DocumentReference?;
+    _videomedia = getDataList(snapshotData['videomedia']);
+    _jobID = snapshotData['job_ID'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -123,6 +152,10 @@ Map<String, dynamic> createJobsRecordData({
   String? boatOwner,
   String? assignedTo,
   String? status,
+  String? ownerNumber,
+  String? contractorDetails,
+  DocumentReference? boatReference,
+  String? jobID,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -135,6 +168,10 @@ Map<String, dynamic> createJobsRecordData({
       'boat_owner': boatOwner,
       'assigned_to': assignedTo,
       'status': status,
+      'owner_number': ownerNumber,
+      'contractor_details': contractorDetails,
+      'boat_reference': boatReference,
+      'job_ID': jobID,
     }.withoutNulls,
   );
 
@@ -156,7 +193,12 @@ class JobsRecordDocumentEquality implements Equality<JobsRecord> {
         e1?.boatOwner == e2?.boatOwner &&
         e1?.assignedTo == e2?.assignedTo &&
         listEquality.equals(e1?.media, e2?.media) &&
-        e1?.status == e2?.status;
+        e1?.status == e2?.status &&
+        e1?.ownerNumber == e2?.ownerNumber &&
+        e1?.contractorDetails == e2?.contractorDetails &&
+        e1?.boatReference == e2?.boatReference &&
+        listEquality.equals(e1?.videomedia, e2?.videomedia) &&
+        e1?.jobID == e2?.jobID;
   }
 
   @override
@@ -170,7 +212,12 @@ class JobsRecordDocumentEquality implements Equality<JobsRecord> {
         e?.boatOwner,
         e?.assignedTo,
         e?.media,
-        e?.status
+        e?.status,
+        e?.ownerNumber,
+        e?.contractorDetails,
+        e?.boatReference,
+        e?.videomedia,
+        e?.jobID
       ]);
 
   @override

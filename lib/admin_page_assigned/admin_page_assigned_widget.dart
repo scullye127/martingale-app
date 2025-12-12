@@ -91,51 +91,58 @@ class _AdminPageAssignedWidgetState extends State<AdminPageAssignedWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Text(
-                'Assigned Requests',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      font: GoogleFonts.inter(
-                        fontWeight:
-                            FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                        fontStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                      ),
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      letterSpacing: 0.0,
-                      fontWeight:
-                          FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                      fontStyle:
-                          FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                    ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(12.0),
-                child: wrapWithModel(
-                  model: _model.serviceRequestModel,
-                  updateCallback: () => safeSetState(() {}),
-                  child: ServiceRequestWidget(),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  child: Text(
+                    'Assigned Requests',
+                    style: FlutterFlowTheme.of(context).headlineSmall.override(
+                          font: GoogleFonts.interTight(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .headlineSmall
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .headlineSmall
+                                .fontStyle,
+                          ),
+                          color: FlutterFlowTheme.of(context).logoYellow,
+                          letterSpacing: 0.0,
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .headlineSmall
+                              .fontWeight,
+                          fontStyle: FlutterFlowTheme.of(context)
+                              .headlineSmall
+                              .fontStyle,
+                        ),
+                  ),
                 ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(0.0, 1.0),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 50.0, 0.0),
-                        child: FlutterFlowIconButton(
+                Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: wrapWithModel(
+                    model: _model.serviceRequestModel,
+                    updateCallback: () => safeSetState(() {}),
+                    child: ServiceRequestWidget(),
+                  ),
+                ),
+                Align(
+                  alignment: AlignmentDirectional(0.0, 1.0),
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        FlutterFlowIconButton(
                           borderRadius: 8.0,
                           buttonSize: 40.0,
-                          fillColor: FlutterFlowTheme.of(context).primary,
+                          fillColor: FlutterFlowTheme.of(context).logoGrey,
                           icon: Icon(
                             Icons.home_repair_service,
-                            color: FlutterFlowTheme.of(context).info,
+                            color: FlutterFlowTheme.of(context).logoYellow,
                             size: 24.0,
                           ),
                           onPressed: () async {
@@ -147,17 +154,13 @@ class _AdminPageAssignedWidgetState extends State<AdminPageAssignedWidget> {
                                 .pushNamed(AdminPageSubmittedWidget.routeName);
                           },
                         ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(75.0, 0.0, 0.0, 0.0),
-                        child: FlutterFlowIconButton(
+                        FlutterFlowIconButton(
                           borderRadius: 8.0,
                           buttonSize: 40.0,
-                          fillColor: FlutterFlowTheme.of(context).primary,
+                          fillColor: FlutterFlowTheme.of(context).logoGrey,
                           icon: Icon(
                             Icons.work_history,
-                            color: FlutterFlowTheme.of(context).info,
+                            color: FlutterFlowTheme.of(context).logoYellow,
                             size: 24.0,
                           ),
                           onPressed: () async {
@@ -169,17 +172,13 @@ class _AdminPageAssignedWidgetState extends State<AdminPageAssignedWidget> {
                                 .pushNamed(AdminPageAssignedWidget.routeName);
                           },
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            145.0, 0.0, 0.0, 0.0),
-                        child: FlutterFlowIconButton(
+                        FlutterFlowIconButton(
                           borderRadius: 8.0,
                           buttonSize: 40.0,
-                          fillColor: FlutterFlowTheme.of(context).primary,
+                          fillColor: FlutterFlowTheme.of(context).logoGrey,
                           icon: Icon(
                             Icons.check_circle,
-                            color: FlutterFlowTheme.of(context).info,
+                            color: FlutterFlowTheme.of(context).logoYellow,
                             size: 24.0,
                           ),
                           onPressed: () async {
@@ -191,48 +190,39 @@ class _AdminPageAssignedWidgetState extends State<AdminPageAssignedWidget> {
                                 .pushNamed(AdminPageCompletedWidget.routeName);
                           },
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: Align(
-                  alignment: AlignmentDirectional(0.0, 1.0),
-                  child: Padding(
-                    padding: EdgeInsets.all(12.0),
-                    child: FFButtonWidget(
-                      onPressed: () async {
-                        logFirebaseEvent('ADMIN_ASSIGNED_LOGOUT_BTN_ON_TAP');
-                        logFirebaseEvent('Button_auth');
-                        GoRouter.of(context).prepareAuthEvent();
-                        await authManager.signOut();
-                        GoRouter.of(context).clearRedirectLocation();
+                Expanded(
+                  child: Align(
+                    alignment: AlignmentDirectional(0.0, 1.0),
+                    child: Padding(
+                      padding: EdgeInsets.all(12.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          logFirebaseEvent('ADMIN_ASSIGNED_LOGOUT_BTN_ON_TAP');
+                          logFirebaseEvent('Button_auth');
+                          GoRouter.of(context).prepareAuthEvent();
+                          await authManager.signOut();
+                          GoRouter.of(context).clearRedirectLocation();
 
-                        context.goNamedAuth(
-                            LoginWidget.routeName, context.mounted);
-                      },
-                      text: 'Logout',
-                      options: FFButtonOptions(
-                        width: double.infinity,
-                        height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 0.0),
-                        iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  font: GoogleFonts.interTight(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontStyle,
-                                  ),
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
+                          context.goNamedAuth(
+                              LoginWidget.routeName, context.mounted);
+                        },
+                        text: 'Logout',
+                        options: FFButtonOptions(
+                          width: double.infinity,
+                          height: 40.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              16.0, 0.0, 16.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).logoGrey,
+                          textStyle: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .override(
+                                font: GoogleFonts.interTight(
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .fontWeight,
@@ -240,14 +230,24 @@ class _AdminPageAssignedWidgetState extends State<AdminPageAssignedWidget> {
                                       .titleSmall
                                       .fontStyle,
                                 ),
-                        elevation: 0.0,
-                        borderRadius: BorderRadius.circular(8.0),
+                                color: FlutterFlowTheme.of(context).logoYellow,
+                                letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .fontStyle,
+                              ),
+                          elevation: 0.0,
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

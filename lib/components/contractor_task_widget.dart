@@ -1,11 +1,14 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/contac_boat_owner_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'contractor_task_model.dart';
 export 'contractor_task_model.dart';
 
@@ -42,6 +45,8 @@ class _ContractorTaskWidgetState extends State<ContractorTaskWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return AuthUserStreamWidget(
       builder: (context) => StreamBuilder<List<JobsRecord>>(
         stream: queryJobsRecord(
@@ -77,7 +82,7 @@ class _ContractorTaskWidgetState extends State<ContractorTaskWidget> {
               return Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
                 child: Container(
-                  height: 359.09,
+                  height: 507.6,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).logoGrey,
                     borderRadius: BorderRadius.circular(16.0),
@@ -95,17 +100,29 @@ class _ContractorTaskWidgetState extends State<ContractorTaskWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      15.0, 0.0, 0.0, 0.0),
-                                  child: Text(
-                                    listViewJobsRecord.title,
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineSmall
-                                        .override(
-                                          font: GoogleFonts.interTight(
+                              Flexible(
+                                child: Align(
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        15.0, 0.0, 0.0, 0.0),
+                                    child: Text(
+                                      listViewJobsRecord.title,
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineSmall
+                                          .override(
+                                            font: GoogleFonts.interTight(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineSmall
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineSmall
+                                                      .fontStyle,
+                                            ),
+                                            color: Color(0xFFEFC641),
+                                            letterSpacing: 0.0,
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .headlineSmall
@@ -115,41 +132,45 @@ class _ContractorTaskWidgetState extends State<ContractorTaskWidget> {
                                                     .headlineSmall
                                                     .fontStyle,
                                           ),
-                                          color: Color(0xFFEFC641),
-                                          letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineSmall
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineSmall
-                                                  .fontStyle,
-                                        ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                                   ),
                                 ),
                               ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 20.0, 0.0),
-                                child: Text(
-                                  valueOrDefault<String>(
-                                    () {
-                                      if (listViewJobsRecord.status == '') {
-                                        return 'in progress';
-                                      } else if (listViewJobsRecord.status ==
-                                          'completed') {
-                                        return 'completed';
-                                      } else {
-                                        return '';
-                                      }
-                                    }(),
-                                    'in progress',
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleMedium
-                                      .override(
-                                        font: GoogleFonts.interTight(
+                              Flexible(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 20.0, 0.0),
+                                  child: Text(
+                                    valueOrDefault<String>(
+                                      () {
+                                        if (listViewJobsRecord.status == '') {
+                                          return 'in progress';
+                                        } else if (listViewJobsRecord.status ==
+                                            'completed') {
+                                          return 'completed';
+                                        } else {
+                                          return '';
+                                        }
+                                      }(),
+                                      'in progress',
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleMedium
+                                        .override(
+                                          font: GoogleFonts.interTight(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleMedium
+                                                    .fontStyle,
+                                          ),
+                                          color: FlutterFlowTheme.of(context)
+                                              .logoYellow,
+                                          letterSpacing: 0.0,
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .titleMedium
@@ -159,16 +180,7 @@ class _ContractorTaskWidgetState extends State<ContractorTaskWidget> {
                                                   .titleMedium
                                                   .fontStyle,
                                         ),
-                                        color: FlutterFlowTheme.of(context)
-                                            .logoYellow,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .titleMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleMedium
-                                            .fontStyle,
-                                      ),
+                                  ),
                                 ),
                               ),
                             ],
@@ -179,7 +191,7 @@ class _ContractorTaskWidgetState extends State<ContractorTaskWidget> {
                               15.0, 20.0, 15.0, 0.0),
                           child: Container(
                             width: double.infinity,
-                            height: 168.45,
+                            height: 173.3,
                             decoration: BoxDecoration(),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
@@ -187,7 +199,7 @@ class _ContractorTaskWidgetState extends State<ContractorTaskWidget> {
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
-                                    'Owner\'s Name',
+                                    'Boat Owner: ${listViewJobsRecord.boatOwner}',
                                     style: FlutterFlowTheme.of(context)
                                         .titleMedium
                                         .override(
@@ -217,33 +229,37 @@ class _ContractorTaskWidgetState extends State<ContractorTaskWidget> {
                                 ),
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
-                                  child: Text(
-                                    listViewJobsRecord.boatOwner,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          font: GoogleFonts.inter(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 15.0, 0.0, 0.0),
+                                    child: Text(
+                                      'Boat: ${listViewJobsRecord.boatName}',
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleMedium
+                                          .override(
+                                            font: GoogleFonts.interTight(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleMedium
+                                                      .fontStyle,
+                                            ),
+                                            color: FlutterFlowTheme.of(context)
+                                                .logoYellow,
+                                            letterSpacing: 0.0,
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                    .titleMedium
                                                     .fontWeight,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                    .titleMedium
                                                     .fontStyle,
                                           ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .logoYellow,
-                                          letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
+                                    ),
                                   ),
                                 ),
                                 Align(
@@ -321,8 +337,29 @@ class _ContractorTaskWidgetState extends State<ContractorTaskWidget> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       FFButtonWidget(
-                                        onPressed: () {
-                                          print('Button pressed ...');
+                                        onPressed: () async {
+                                          logFirebaseEvent(
+                                              'CONTRACTOR_TASK_CONTACT_OWNER_BTN_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Button_bottom_sheet');
+                                          await showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.transparent,
+                                            enableDrag: false,
+                                            context: context,
+                                            builder: (context) {
+                                              return Padding(
+                                                padding:
+                                                    MediaQuery.viewInsetsOf(
+                                                        context),
+                                                child: ContacBoatOwnerWidget(
+                                                  job: listViewJobsRecord
+                                                      .reference,
+                                                ),
+                                              );
+                                            },
+                                          ).then(
+                                              (value) => safeSetState(() {}));
                                         },
                                         text: 'Contact Owner',
                                         options: FFButtonOptions(
@@ -445,6 +482,7 @@ class _ContractorTaskWidgetState extends State<ContractorTaskWidget> {
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
+                            borderRadius: BorderRadius.circular(0.0),
                           ),
                           child: Builder(
                             builder: (context) {
@@ -469,7 +507,7 @@ class _ContractorTaskWidgetState extends State<ContractorTaskWidget> {
                                       child: Image.network(
                                         medialistownerItem,
                                         width: 61.1,
-                                        height: 129.1,
+                                        height: 129.08,
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -477,6 +515,120 @@ class _ContractorTaskWidgetState extends State<ContractorTaskWidget> {
                                 },
                               );
                             },
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 10.0, 0.0, 0.0),
+                          child: Container(
+                            width: 309.0,
+                            height: 89.1,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                            ),
+                            child: Builder(
+                              builder: (context) {
+                                final medialistownervideo = listViewJobsRecord
+                                    .videomedia
+                                    .toList()
+                                    .take(8)
+                                    .toList();
+
+                                return ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: medialistownervideo.length,
+                                  itemBuilder:
+                                      (context, medialistownervideoIndex) {
+                                    final medialistownervideoItem =
+                                        medialistownervideo[
+                                            medialistownervideoIndex];
+                                    return FlutterFlowVideoPlayer(
+                                      path: medialistownervideoItem,
+                                      videoType: VideoType.network,
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                      autoPlay: false,
+                                      looping: true,
+                                      showControls: true,
+                                      allowFullScreen: true,
+                                      allowPlaybackSpeedMenu: false,
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 10.0, 0.0, 0.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              logFirebaseEvent(
+                                  'CONTRACTOR_TASK_DOWNLOAD_MEDIA_BTN_ON_TA');
+                              for (int loop1Index = 0;
+                                  loop1Index < listViewJobsRecord.media.length;
+                                  loop1Index++) {
+                                final currentLoop1Item =
+                                    listViewJobsRecord.media[loop1Index];
+                                logFirebaseEvent('Button_download_file');
+                                await downloadFile(
+                                  filename: 'Test',
+                                  url: currentLoop1Item,
+                                );
+                                logFirebaseEvent('Button_show_snack_bar');
+                                ScaffoldMessenger.of(context).clearSnackBars();
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      currentLoop1Item,
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: Duration(milliseconds: 10000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).secondary,
+                                  ),
+                                );
+                              }
+                            },
+                            text: 'Download Media',
+                            options: FFButtonOptions(
+                              height: 40.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 16.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: Colors.black,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    font: GoogleFonts.interTight(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
+                                    ),
+                                    color:
+                                        FlutterFlowTheme.of(context).logoYellow,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
+                              elevation: 0.0,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
                           ),
                         ),
                       ],

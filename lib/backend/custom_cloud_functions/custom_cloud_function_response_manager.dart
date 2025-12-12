@@ -1,3 +1,4 @@
+
 class ReadContractorListCloudFunctionCallResponse {
   ReadContractorListCloudFunctionCallResponse({
     this.errorCode,
