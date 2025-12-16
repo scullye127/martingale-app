@@ -18,7 +18,7 @@ class BoatInfoModel extends FlutterFlowModel<BoatInfoWidget> {
   void updateDeletePartsAtIndex(int index, Function(PartStruct) updateFn) =>
       deleteParts[index] = updateFn(deleteParts[index]);
 
-  String currentCategory = 'All Comonents';
+  String currentCategory = 'All Components';
 
   ///  State fields for stateful widgets in this page.
 

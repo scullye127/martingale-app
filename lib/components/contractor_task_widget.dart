@@ -502,13 +502,56 @@ class _ContractorTaskWidgetState extends State<ContractorTaskWidget> {
                                   return Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         7.0, 15.0, 7.0, 15.0),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Image.network(
-                                        medialistownerItem,
-                                        width: 61.1,
-                                        height: 129.08,
-                                        fit: BoxFit.cover,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        logFirebaseEvent(
+                                            'CONTRACTOR_TASK_Image_7sl3ggt1_ON_TAP');
+                                        logFirebaseEvent('Image_navigate_to');
+
+                                        context.pushNamed(
+                                          CustomizePhotoWidget.routeName,
+                                          queryParameters: {
+                                            'imageurl': serializeParam(
+                                              listViewJobsRecord.media
+                                                  .elementAtOrNull(
+                                                      medialistownerIndex),
+                                              ParamType.String,
+                                            ),
+                                            'photoindex': serializeParam(
+                                              medialistownerIndex,
+                                              ParamType.int,
+                                            ),
+                                            'jobsdoc': serializeParam(
+                                              listViewJobsRecord,
+                                              ParamType.Document,
+                                            ),
+                                          }.withoutNulls,
+                                          extra: <String, dynamic>{
+                                            'jobsdoc': listViewJobsRecord,
+                                          },
+                                        );
+                                      },
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.network(
+                                          medialistownerItem,
+                                          width: 61.1,
+                                          height: 129.08,
+                                          fit: BoxFit.cover,
+                                          errorBuilder:
+                                              (context, error, stackTrace) =>
+                                                  Image.asset(
+                                            'assets/images/error_image.png',
+                                            width: 61.1,
+                                            height: 129.08,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   );
@@ -545,16 +588,20 @@ class _ContractorTaskWidgetState extends State<ContractorTaskWidget> {
                                     final medialistownervideoItem =
                                         medialistownervideo[
                                             medialistownervideoIndex];
-                                    return FlutterFlowVideoPlayer(
-                                      path: medialistownervideoItem,
-                                      videoType: VideoType.network,
-                                      width: double.infinity,
-                                      height: double.infinity,
-                                      autoPlay: false,
-                                      looping: true,
-                                      showControls: true,
-                                      allowFullScreen: true,
-                                      allowPlaybackSpeedMenu: false,
+                                    return Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 5.0, 5.0, 5.0),
+                                      child: FlutterFlowVideoPlayer(
+                                        path: medialistownervideoItem,
+                                        videoType: VideoType.network,
+                                        width: double.infinity,
+                                        height: double.infinity,
+                                        autoPlay: false,
+                                        looping: true,
+                                        showControls: true,
+                                        allowFullScreen: true,
+                                        allowPlaybackSpeedMenu: false,
+                                      ),
                                     );
                                   },
                                 );
@@ -568,12 +615,13 @@ class _ContractorTaskWidgetState extends State<ContractorTaskWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               logFirebaseEvent(
-                                  'CONTRACTOR_TASK_DOWNLOAD_MEDIA_BTN_ON_TA');
+                                  'CONTRACTOR_TASK_DOWNLOAD_VIDEOS_BTN_ON_T');
                               for (int loop1Index = 0;
-                                  loop1Index < listViewJobsRecord.media.length;
+                                  loop1Index <
+                                      listViewJobsRecord.videomedia.length;
                                   loop1Index++) {
                                 final currentLoop1Item =
-                                    listViewJobsRecord.media[loop1Index];
+                                    listViewJobsRecord.videomedia[loop1Index];
                                 logFirebaseEvent('Button_download_file');
                                 await downloadFile(
                                   filename: 'Test',
@@ -597,7 +645,7 @@ class _ContractorTaskWidgetState extends State<ContractorTaskWidget> {
                                 );
                               }
                             },
-                            text: 'Download Media',
+                            text: 'Download Videos',
                             options: FFButtonOptions(
                               height: 40.0,
                               padding: EdgeInsetsDirectional.fromSTEB(

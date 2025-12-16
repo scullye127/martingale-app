@@ -16,7 +16,7 @@ class AdminPageCompletedWidget extends StatefulWidget {
   const AdminPageCompletedWidget({super.key});
 
   static String routeName = 'AdminPage-completed';
-  static String routePath = '/adminPageCompleted';
+  static String routePath = '/adminPage-completed';
 
   @override
   State<AdminPageCompletedWidget> createState() =>
@@ -42,7 +42,7 @@ class _AdminPageCompletedWidgetState extends State<AdminPageCompletedWidget> {
       _model.submittedTasks = await queryJobsRecordOnce(
         queryBuilder: (jobsRecord) => jobsRecord.where(
           'status',
-          isEqualTo: '\"completed\"',
+          isEqualTo: 'Submitted',
         ),
       );
       logFirebaseEvent('AdminPage-completed_rebuild_page');
@@ -68,7 +68,7 @@ class _AdminPageCompletedWidgetState extends State<AdminPageCompletedWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Colors.black,
+        backgroundColor: FlutterFlowTheme.of(context).primaryText,
         appBar: AppBar(
           backgroundColor: Color(0xFF2B3745),
           automaticallyImplyLeading: false,
@@ -88,145 +88,286 @@ class _AdminPageCompletedWidgetState extends State<AdminPageCompletedWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Text(
-                'Completed Requests',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      font: GoogleFonts.inter(
-                        fontWeight:
-                            FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                        fontStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                      ),
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      letterSpacing: 0.0,
-                      fontWeight:
-                          FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                      fontStyle:
-                          FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+          child: Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.black,
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                    child: Text(
+                      'Completed Requests',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            font: GoogleFonts.inter(
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
+                            ),
+                            color: FlutterFlowTheme.of(context).logoYellow,
+                            letterSpacing: 0.0,
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
+                          ),
                     ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(12.0),
-                child: wrapWithModel(
-                  model: _model.serviceRequestModel,
-                  updateCallback: () => safeSetState(() {}),
-                  child: ServiceRequestWidget(),
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(0.0, 1.0),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  ),
+                  ListView(
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
                     children: [
-                      FlutterFlowIconButton(
-                        borderRadius: 8.0,
-                        buttonSize: 40.0,
-                        fillColor: FlutterFlowTheme.of(context).logoGrey,
-                        icon: Icon(
-                          Icons.home_repair_service,
-                          color: FlutterFlowTheme.of(context).logoYellow,
-                          size: 24.0,
+                      Padding(
+                        padding: EdgeInsets.all(12.0),
+                        child: wrapWithModel(
+                          model: _model.serviceRequestModel,
+                          updateCallback: () => safeSetState(() {}),
+                          child: ServiceRequestWidget(
+                            statusFilter: 'completed',
+                          ),
                         ),
-                        onPressed: () async {
-                          logFirebaseEvent(
-                              'ADMIN_COMPLETED_home_repair_service_ICN_');
-                          logFirebaseEvent('IconButton_navigate_to');
-
-                          context.pushNamed(AdminPageSubmittedWidget.routeName);
-                        },
                       ),
-                      FlutterFlowIconButton(
-                        borderRadius: 8.0,
-                        buttonSize: 40.0,
-                        fillColor: FlutterFlowTheme.of(context).logoGrey,
-                        icon: Icon(
-                          Icons.work_history,
-                          color: FlutterFlowTheme.of(context).logoYellow,
-                          size: 24.0,
-                        ),
-                        onPressed: () async {
-                          logFirebaseEvent(
-                              'ADMIN_COMPLETED_work_history_ICN_ON_TAP');
-                          logFirebaseEvent('IconButton_navigate_to');
+                      Align(
+                        alignment: AlignmentDirectional(0.0, 1.0),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 50.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              FFButtonWidget(
+                                onPressed: () async {
+                                  logFirebaseEvent(
+                                      'ADMIN_COMPLETED_submittedButton_ON_TAP');
+                                  logFirebaseEvent(
+                                      'submittedButton_navigate_to');
 
-                          context.pushNamed(AdminPageAssignedWidget.routeName);
-                        },
-                      ),
-                      FlutterFlowIconButton(
-                        borderRadius: 8.0,
-                        buttonSize: 40.0,
-                        fillColor: FlutterFlowTheme.of(context).logoGrey,
-                        icon: Icon(
-                          Icons.check_circle,
-                          color: FlutterFlowTheme.of(context).logoYellow,
-                          size: 24.0,
+                                  context.pushNamed(
+                                      AdminPageSubmittedWidget.routeName);
+                                },
+                                text: 'Submited',
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 0.0, 16.0, 0.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).logoGrey,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        font: GoogleFonts.interTight(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .fontStyle,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .logoYellow,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .fontStyle,
+                                      ),
+                                  elevation: 0.0,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                              FFButtonWidget(
+                                onPressed: () async {
+                                  logFirebaseEvent(
+                                      'ADMIN_COMPLETED_assignedButton_ON_TAP');
+                                  logFirebaseEvent(
+                                      'assignedButton_navigate_to');
+
+                                  context.pushNamed(
+                                      AdminPageAssignedWidget.routeName);
+                                },
+                                text: 'Assigned',
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 0.0, 16.0, 0.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).logoGrey,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        font: GoogleFonts.interTight(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .fontStyle,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .logoYellow,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .fontStyle,
+                                      ),
+                                  elevation: 0.0,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                              FFButtonWidget(
+                                onPressed: () async {
+                                  logFirebaseEvent(
+                                      'ADMIN_COMPLETED_completedButton_ON_TAP');
+                                  logFirebaseEvent(
+                                      'completedButton_navigate_to');
+
+                                  context.pushNamed(
+                                      AdminPageCompletedWidget.routeName);
+                                },
+                                text: 'Completed',
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 0.0, 16.0, 0.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).logoGrey,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        font: GoogleFonts.interTight(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .fontStyle,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .logoYellow,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .fontStyle,
+                                      ),
+                                  elevation: 0.0,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        onPressed: () {
-                          print('IconButton pressed ...');
-                        },
                       ),
                     ],
                   ),
-                ),
-              ),
-              Expanded(
-                child: Align(
-                  alignment: AlignmentDirectional(0.0, 1.0),
-                  child: Padding(
-                    padding: EdgeInsets.all(12.0),
-                    child: FFButtonWidget(
-                      onPressed: () async {
-                        logFirebaseEvent('ADMIN_COMPLETED_LOGOUT_BTN_ON_TAP');
-                        logFirebaseEvent('Button_auth');
-                        GoRouter.of(context).prepareAuthEvent();
-                        await authManager.signOut();
-                        GoRouter.of(context).clearRedirectLocation();
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        FlutterFlowIconButton(
+                          borderRadius: 8.0,
+                          buttonSize: 70.0,
+                          fillColor: FlutterFlowTheme.of(context).logoGrey,
+                          icon: Icon(
+                            Icons.home,
+                            color: FlutterFlowTheme.of(context).logoYellow,
+                            size: 50.0,
+                          ),
+                          onPressed: () async {
+                            logFirebaseEvent('ADMIN_COMPLETED_home_ICN_ON_TAP');
+                            logFirebaseEvent('IconButton_navigate_to');
 
-                        context.goNamedAuth(
-                            LoginWidget.routeName, context.mounted);
-                      },
-                      text: 'Logout',
-                      options: FFButtonOptions(
-                        width: double.infinity,
-                        height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 0.0),
-                        iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  font: GoogleFonts.interTight(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontStyle,
-                                  ),
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .fontStyle,
-                                ),
-                        elevation: 0.0,
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
+                            context.pushNamed(AdminHomeWidget.routeName);
+                          },
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.all(12.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                logFirebaseEvent(
+                                    'ADMIN_COMPLETED_LOG_OUT_BTN_ON_TAP');
+                                logFirebaseEvent('Button_auth');
+                                GoRouter.of(context).prepareAuthEvent();
+                                await authManager.signOut();
+                                GoRouter.of(context).clearRedirectLocation();
+
+                                context.goNamedAuth(
+                                    LoginWidget.routeName, context.mounted);
+                              },
+                              text: 'Log Out',
+                              options: FFButtonOptions(
+                                width: double.infinity,
+                                height: 40.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 16.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).logoGrey,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      font: GoogleFonts.interTight(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .fontStyle,
+                                      ),
+                                      color: FlutterFlowTheme.of(context)
+                                          .logoYellow,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
+                                    ),
+                                elevation: 0.0,
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),

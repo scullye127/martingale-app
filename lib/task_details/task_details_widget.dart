@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/index.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,9 +19,13 @@ class TaskDetailsWidget extends StatefulWidget {
   const TaskDetailsWidget({
     super.key,
     required this.task,
+    required this.taskRef,
+    required this.subtaskDoc,
   });
 
   final JobsRecord? task;
+  final DocumentReference? taskRef;
+  final SubTaskRecord? subtaskDoc;
 
   static String routeName = 'taskDetails';
   static String routePath = '/taskDetails';
@@ -105,7 +110,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
             children: [
               Container(
                 width: 391.2,
-                height: 386.21,
+                height: 418.18,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),
@@ -212,25 +217,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Align(
-                          alignment: AlignmentDirectional(-1.0, 1.0),
-                          child: FlutterFlowIconButton(
-                            borderRadius: 8.0,
-                            buttonSize: 40.0,
-                            fillColor: FlutterFlowTheme.of(context).primary,
-                            icon: Icon(
-                              Icons.arrow_back,
-                              color: FlutterFlowTheme.of(context).info,
-                              size: 24.0,
-                            ),
-                            onPressed: () async {
-                              logFirebaseEvent(
-                                  'TASK_DETAILS_PAGE_backButton_ON_TAP');
-                              logFirebaseEvent('backButton_navigate_back');
-                              context.safePop();
-                            },
-                          ),
-                        ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               5.0, 0.0, 5.0, 0.0),
@@ -249,7 +235,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                               logFirebaseEvent('splitTask_navigate_to');
 
                               context.pushNamed(
-                                CreateSubtask1Widget.routeName,
+                                CreateSubtaskWidget.routeName,
                                 queryParameters: {
                                   'taskDetails': serializeParam(
                                     widget.task,
@@ -373,7 +359,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                             await widget.task!.reference
                                 .update(createJobsRecordData(
                               assignedTo: _model.contractorOptionsValue,
-                              status: 'Assigned',
+                              status: 'assigned',
                             ));
                             logFirebaseEvent('Button_navigate_back');
                             context.safePop();
@@ -446,13 +432,55 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                 return Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       7.0, 15.0, 7.0, 15.0),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.network(
-                                      medialistownerphotosItem,
-                                      width: 61.1,
-                                      height: 129.1,
-                                      fit: BoxFit.cover,
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'TASK_DETAILS_PAGE_Image_yjg0i2k4_ON_TAP');
+                                      logFirebaseEvent('Image_navigate_to');
+
+                                      context.pushNamed(
+                                        CustomizePhotoWidget.routeName,
+                                        queryParameters: {
+                                          'imageurl': serializeParam(
+                                            widget.task?.media
+                                                .elementAtOrNull(
+                                                    medialistownerphotosIndex),
+                                            ParamType.String,
+                                          ),
+                                          'photoindex': serializeParam(
+                                            medialistownerphotosIndex,
+                                            ParamType.int,
+                                          ),
+                                          'jobsdoc': serializeParam(
+                                            widget.task,
+                                            ParamType.Document,
+                                          ),
+                                        }.withoutNulls,
+                                        extra: <String, dynamic>{
+                                          'jobsdoc': widget.task,
+                                        },
+                                      );
+                                    },
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.network(
+                                        medialistownerphotosItem,
+                                        width: 61.1,
+                                        height: 129.1,
+                                        fit: BoxFit.cover,
+                                        errorBuilder:
+                                            (context, error, stackTrace) =>
+                                                Image.asset(
+                                          'assets/images/error_image.png',
+                                          width: 61.1,
+                                          height: 129.1,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 );
@@ -487,16 +515,20 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                               itemBuilder: (context, mediavideoIndex) {
                                 final mediavideoItem =
                                     mediavideo[mediavideoIndex];
-                                return FlutterFlowVideoPlayer(
-                                  path: mediavideoItem,
-                                  videoType: VideoType.network,
-                                  width: double.infinity,
-                                  height: double.infinity,
-                                  autoPlay: false,
-                                  looping: true,
-                                  showControls: true,
-                                  allowFullScreen: true,
-                                  allowPlaybackSpeedMenu: false,
+                                return Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      5.0, 5.0, 5.0, 5.0),
+                                  child: FlutterFlowVideoPlayer(
+                                    path: mediavideoItem,
+                                    videoType: VideoType.network,
+                                    width: double.infinity,
+                                    height: double.infinity,
+                                    autoPlay: false,
+                                    looping: true,
+                                    showControls: true,
+                                    allowFullScreen: true,
+                                    allowPlaybackSpeedMenu: false,
+                                  ),
                                 );
                               },
                             );
@@ -510,12 +542,12 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                       child: FFButtonWidget(
                         onPressed: () async {
                           logFirebaseEvent(
-                              'TASK_DETAILS_DOWNLOAD_MEDIA_BTN_ON_TAP');
+                              'TASK_DETAILS_DOWNLOAD_VIDEOS_BTN_ON_TAP');
                           for (int loop1Index = 0;
-                              loop1Index < widget.task!.media.length;
+                              loop1Index < widget.task!.videomedia.length;
                               loop1Index++) {
                             final currentLoop1Item =
-                                widget.task!.media[loop1Index];
+                                widget.task!.videomedia[loop1Index];
                             logFirebaseEvent('Button_download_file');
                             await downloadFile(
                               filename: 'Test',
@@ -539,7 +571,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                             );
                           }
                         },
-                        text: 'Download Media',
+                        text: 'Download Videos',
                         options: FFButtonOptions(
                           height: 40.0,
                           padding: EdgeInsetsDirectional.fromSTEB(
@@ -568,6 +600,29 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                   ),
                           elevation: 0.0,
                           borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(-1.0, 0.0),
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(7.0, 0.0, 0.0, 0.0),
+                        child: FlutterFlowIconButton(
+                          borderRadius: 8.0,
+                          buttonSize: 40.0,
+                          fillColor: FlutterFlowTheme.of(context).primary,
+                          icon: Icon(
+                            Icons.arrow_back,
+                            color: FlutterFlowTheme.of(context).info,
+                            size: 24.0,
+                          ),
+                          onPressed: () async {
+                            logFirebaseEvent(
+                                'TASK_DETAILS_PAGE_backButton_ON_TAP');
+                            logFirebaseEvent('backButton_navigate_back');
+                            context.safePop();
+                          },
                         ),
                       ),
                     ),

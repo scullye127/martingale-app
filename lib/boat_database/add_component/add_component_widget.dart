@@ -929,6 +929,11 @@ class _AddComponentWidgetState extends State<AddComponentWidget> {
                             _model.detailsTextController?.clear();
                             _model.manualTextController?.clear();
                           });
+                          logFirebaseEvent('Button_reset_form_fields');
+                          safeSetState(() {
+                            _model.dropDownValueController?.reset();
+                            _model.dropDownValue = null;
+                          });
                         },
                         text: 'Add Component',
                         options: FFButtonOptions(

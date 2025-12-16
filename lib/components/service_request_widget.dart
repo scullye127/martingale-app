@@ -9,7 +9,14 @@ import 'service_request_model.dart';
 export 'service_request_model.dart';
 
 class ServiceRequestWidget extends StatefulWidget {
-  const ServiceRequestWidget({super.key});
+  const ServiceRequestWidget({
+    super.key,
+    required this.statusFilter,
+    this.subtaskDoc,
+  });
+
+  final String? statusFilter;
+  final SubTaskRecord? subtaskDoc;
 
   @override
   State<ServiceRequestWidget> createState() => _ServiceRequestWidgetState();
@@ -45,7 +52,12 @@ class _ServiceRequestWidgetState extends State<ServiceRequestWidget> {
       mainAxisSize: MainAxisSize.max,
       children: [
         StreamBuilder<List<JobsRecord>>(
-          stream: queryJobsRecord(),
+          stream: queryJobsRecord(
+            queryBuilder: (jobsRecord) => jobsRecord.where(
+              'status',
+              isEqualTo: widget.statusFilter,
+            ),
+          ),
           builder: (context, snapshot) {
             // Customize what your widget looks like when it's loading.
             if (!snapshot.hasData) {
@@ -184,9 +196,18 @@ class _ServiceRequestWidgetState extends State<ServiceRequestWidget> {
                                         listViewJobsRecord,
                                         ParamType.Document,
                                       ),
+                                      'taskRef': serializeParam(
+                                        listViewJobsRecord.reference,
+                                        ParamType.DocumentReference,
+                                      ),
+                                      'subtaskDoc': serializeParam(
+                                        widget.subtaskDoc,
+                                        ParamType.Document,
+                                      ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
                                       'task': listViewJobsRecord,
+                                      'subtaskDoc': widget.subtaskDoc,
                                       kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType:

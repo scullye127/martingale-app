@@ -1028,7 +1028,7 @@ class _TicketSubmitWidgetState extends State<TicketSubmitWidget>
                           timeCreated: getCurrentTimestamp,
                           description: _model.loginEmailTextController.text,
                           boatOwner: currentUserDisplayName,
-                          status: 'Submitted',
+                          status: 'submitted',
                           ownerNumber: currentPhoneNumber,
                           boatReference: _model.selectedBoatRef?.reference,
                           boatName: _model.selectedBoatRef?.vesselName,

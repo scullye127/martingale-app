@@ -1,12 +1,11 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/index.dart';
-import 'admin_page_new_assigned_widget.dart' show AdminPageNewAssignedWidget;
+import '/flutter_flow/form_field_controller.dart';
+import 'subtask_card_widget.dart' show SubtaskCardWidget;
 import 'package:flutter/material.dart';
 
-class AdminPageNewAssignedModel
-    extends FlutterFlowModel<AdminPageNewAssignedWidget> {
-  ///  Local state fields for this page.
+class SubtaskCardModel extends FlutterFlowModel<SubtaskCardWidget> {
+  ///  Local state fields for this component.
 
   List<String> contractorList = [];
   void addToContractorList(String item) => contractorList.add(item);
@@ -18,10 +17,13 @@ class AdminPageNewAssignedModel
   void updateContractorListAtIndex(int index, Function(String) updateFn) =>
       contractorList[index] = updateFn(contractorList[index]);
 
-  ///  State fields for stateful widgets in this page.
+  ///  State fields for stateful widgets in this component.
 
-  // Stores action output result for [Firestore Query - Query a collection] action in AdminPage-newAssigned widget.
-  List<JobsRecord>? submittedTasks;
+  // Stores action output result for [Firestore Query - Query a collection] action in subtaskCard widget.
+  List<UsersRecord>? contractors;
+  // State field(s) for DropDown widget.
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
 
   @override
   void initState(BuildContext context) {}

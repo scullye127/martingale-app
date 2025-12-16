@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'login_copy_widget.dart' show LoginCopyWidget;
+import 'customize_photo_widget.dart' show CustomizePhotoWidget;
 import 'package:flutter/material.dart';
 
-class LoginCopyModel extends FlutterFlowModel<LoginCopyWidget> {
+class CustomizePhotoModel extends FlutterFlowModel<CustomizePhotoWidget> {
   @override
   void initState(BuildContext context) {}
 

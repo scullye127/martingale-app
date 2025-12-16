@@ -1,4 +1,5 @@
 import '/backend/backend.dart';
+import '/components/service_request_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'admin_page_submitted_widget.dart' show AdminPageSubmittedWidget;
@@ -22,10 +23,16 @@ class AdminPageSubmittedModel
 
   // Stores action output result for [Firestore Query - Query a collection] action in AdminPage-submitted widget.
   List<JobsRecord>? submittedTasks;
+  // Model for serviceRequest component.
+  late ServiceRequestModel serviceRequestModel;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    serviceRequestModel = createModel(context, () => ServiceRequestModel());
+  }
 
   @override
-  void dispose() {}
+  void dispose() {
+    serviceRequestModel.dispose();
+  }
 }

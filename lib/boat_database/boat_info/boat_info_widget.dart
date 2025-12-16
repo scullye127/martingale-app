@@ -320,32 +320,37 @@ class _BoatInfoWidgetState extends State<BoatInfoWidget> {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(6.0),
-                    child: FlutterFlowDropDown<String>(
-                      controller: _model.dropDownValueController ??=
-                          FormFieldController<String>(
-                        _model.dropDownValue ??= 'All Components',
-                      ),
-                      options: [
-                        'All Components',
-                        'Propulsion',
-                        'Electrical',
-                        'Navigation'
-                      ],
-                      onChanged: (val) async {
-                        safeSetState(() => _model.dropDownValue = val);
-                        logFirebaseEvent(
-                            'BOAT_INFO_DropDown_eg0jflun_ON_FORM_WIDG');
-                        logFirebaseEvent('DropDown_update_page_state');
-                        _model.currentCategory = _model.dropDownValue!;
-                        safeSetState(() {});
-                      },
-                      width: double.infinity,
-                      height: 40.0,
-                      textStyle:
-                          FlutterFlowTheme.of(context).bodyMedium.override(
-                                font: GoogleFonts.inter(
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.all(6.0),
+                          child: FlutterFlowDropDown<String>(
+                            controller: _model.dropDownValueController ??=
+                                FormFieldController<String>(null),
+                            options: [
+                              'All Components',
+                              'Propulsion',
+                              'Navigation',
+                              'Electrical'
+                            ],
+                            onChanged: (val) =>
+                                safeSetState(() => _model.dropDownValue = val),
+                            width: 200.0,
+                            height: 40.0,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                                  letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .fontWeight,
@@ -353,33 +358,49 @@ class _BoatInfoWidgetState extends State<BoatInfoWidget> {
                                       .bodyMedium
                                       .fontStyle,
                                 ),
-                                letterSpacing: 0.0,
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontStyle,
-                              ),
-                      hintText: 'Select Category',
-                      icon: Icon(
-                        Icons.keyboard_arrow_down_rounded,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 24.0,
+                            hintText: 'Select...',
+                            icon: Icon(
+                              Icons.keyboard_arrow_down_rounded,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 24.0,
+                            ),
+                            fillColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            elevation: 2.0,
+                            borderColor: Colors.transparent,
+                            borderWidth: 0.0,
+                            borderRadius: 8.0,
+                            margin: EdgeInsetsDirectional.fromSTEB(
+                                12.0, 0.0, 12.0, 0.0),
+                            hidesUnderline: true,
+                            isOverButton: false,
+                            isSearchable: false,
+                            isMultiSelect: false,
+                          ),
+                        ),
                       ),
-                      fillColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      elevation: 2.0,
-                      borderColor: Colors.transparent,
-                      borderWidth: 0.0,
-                      borderRadius: 8.0,
-                      margin:
-                          EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
-                      hidesUnderline: true,
-                      isOverButton: false,
-                      isSearchable: false,
-                      isMultiSelect: false,
-                    ),
+                      Padding(
+                        padding: EdgeInsets.all(6.0),
+                        child: FlutterFlowIconButton(
+                          borderRadius: 8.0,
+                          buttonSize: 40.0,
+                          fillColor: FlutterFlowTheme.of(context).logoGrey,
+                          icon: Icon(
+                            Icons.search,
+                            color: FlutterFlowTheme.of(context).logoYellow,
+                            size: 24.0,
+                          ),
+                          onPressed: () async {
+                            logFirebaseEvent(
+                                'BOAT_INFO_PAGE_search_ICN_ON_TAP');
+                            logFirebaseEvent('IconButton_update_page_state');
+                            _model.currentCategory = _model.dropDownValue!;
+                            logFirebaseEvent('IconButton_rebuild_page');
+                            safeSetState(() {});
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                   StreamBuilder<List<PartsListRecord>>(
                     stream: queryPartsListRecord(
@@ -454,7 +475,7 @@ class _BoatInfoWidgetState extends State<BoatInfoWidget> {
                                           Padding(
                                             padding: EdgeInsets.all(6.0),
                                             child: Text(
-                                              'Category: ${(listViewPartsListRecord?.parts.elementAtOrNull(componentIndex))?.category}',
+                                              'Category: ${componentItem.category}',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -671,7 +692,7 @@ class _BoatInfoWidgetState extends State<BoatInfoWidget> {
                                           Padding(
                                             padding: EdgeInsets.all(6.0),
                                             child: Text(
-                                              'Component: ${(listViewPartsListRecord?.parts.elementAtOrNull(componentIndex))?.name}',
+                                              'Component: ${componentItem.name}',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -711,7 +732,7 @@ class _BoatInfoWidgetState extends State<BoatInfoWidget> {
                                           Padding(
                                             padding: EdgeInsets.all(6.0),
                                             child: Text(
-                                              'Make & Model: ${(listViewPartsListRecord?.parts.elementAtOrNull(componentIndex))?.partMake} ${(listViewPartsListRecord?.parts.elementAtOrNull(componentIndex))?.partModel}',
+                                              'Make & Model: ${componentItem.partMake} ${componentItem.partModel}',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -751,7 +772,7 @@ class _BoatInfoWidgetState extends State<BoatInfoWidget> {
                                           Padding(
                                             padding: EdgeInsets.all(6.0),
                                             child: Text(
-                                              'Details: ${(listViewPartsListRecord?.parts.elementAtOrNull(componentIndex))?.details}',
+                                              'Details: ${componentItem.details}',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium

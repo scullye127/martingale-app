@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -399,14 +400,56 @@ class _BoatownerviewticketsWidgetState
                                     return Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           7.0, 15.0, 7.0, 15.0),
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        child: Image.network(
-                                          medialistownerItem,
-                                          width: 61.1,
-                                          height: 129.08,
-                                          fit: BoxFit.cover,
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          logFirebaseEvent(
+                                              'BOATOWNERVIEWTICKETS_Image_zu0n1azz_ON_T');
+                                          logFirebaseEvent('Image_navigate_to');
+
+                                          context.pushNamed(
+                                            CustomizePhotoWidget.routeName,
+                                            queryParameters: {
+                                              'imageurl': serializeParam(
+                                                listViewJobsRecord.media
+                                                    .elementAtOrNull(
+                                                        medialistownerIndex),
+                                                ParamType.String,
+                                              ),
+                                              'photoindex': serializeParam(
+                                                medialistownerIndex,
+                                                ParamType.int,
+                                              ),
+                                              'jobsdoc': serializeParam(
+                                                listViewJobsRecord,
+                                                ParamType.Document,
+                                              ),
+                                            }.withoutNulls,
+                                            extra: <String, dynamic>{
+                                              'jobsdoc': listViewJobsRecord,
+                                            },
+                                          );
+                                        },
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            medialistownerItem,
+                                            width: 61.1,
+                                            height: 129.08,
+                                            fit: BoxFit.cover,
+                                            errorBuilder:
+                                                (context, error, stackTrace) =>
+                                                    Image.asset(
+                                              'assets/images/error_image.png',
+                                              width: 61.1,
+                                              height: 129.08,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     );
@@ -444,16 +487,55 @@ class _BoatownerviewticketsWidgetState
                                     final medialistownervideoItem =
                                         medialistownervideo[
                                             medialistownervideoIndex];
-                                    return FlutterFlowVideoPlayer(
-                                      path: medialistownervideoItem,
-                                      videoType: VideoType.network,
-                                      width: double.infinity,
-                                      height: double.infinity,
-                                      autoPlay: false,
-                                      looping: true,
-                                      showControls: true,
-                                      allowFullScreen: true,
-                                      allowPlaybackSpeedMenu: false,
+                                    return Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 5.0, 5.0, 5.0),
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          logFirebaseEvent(
+                                              'BOATOWNERVIEWTICKETS_VideoPlayer_ut3h8zk');
+                                          logFirebaseEvent(
+                                              'VideoPlayer_navigate_to');
+
+                                          context.pushNamed(
+                                            CustomizeVideoWidget.routeName,
+                                            queryParameters: {
+                                              'videourl': serializeParam(
+                                                listViewJobsRecord.videomedia
+                                                    .elementAtOrNull(
+                                                        medialistownervideoIndex),
+                                                ParamType.String,
+                                              ),
+                                              'videoindex': serializeParam(
+                                                medialistownervideoIndex,
+                                                ParamType.int,
+                                              ),
+                                              'jobsdoc': serializeParam(
+                                                listViewJobsRecord,
+                                                ParamType.Document,
+                                              ),
+                                            }.withoutNulls,
+                                            extra: <String, dynamic>{
+                                              'jobsdoc': listViewJobsRecord,
+                                            },
+                                          );
+                                        },
+                                        child: FlutterFlowVideoPlayer(
+                                          path: medialistownervideoItem,
+                                          videoType: VideoType.network,
+                                          width: double.infinity,
+                                          height: double.infinity,
+                                          autoPlay: false,
+                                          looping: true,
+                                          showControls: true,
+                                          allowFullScreen: false,
+                                          allowPlaybackSpeedMenu: false,
+                                        ),
+                                      ),
                                     );
                                   },
                                 );
@@ -467,12 +549,13 @@ class _BoatownerviewticketsWidgetState
                           child: FFButtonWidget(
                             onPressed: () async {
                               logFirebaseEvent(
-                                  'BOATOWNERVIEWTICKETS_DOWNLOAD_MEDIA_BTN_');
+                                  'BOATOWNERVIEWTICKETS_DOWNLOAD_VIDEOS_BTN');
                               for (int loop1Index = 0;
-                                  loop1Index < listViewJobsRecord.media.length;
+                                  loop1Index <
+                                      listViewJobsRecord.videomedia.length;
                                   loop1Index++) {
                                 final currentLoop1Item =
-                                    listViewJobsRecord.media[loop1Index];
+                                    listViewJobsRecord.videomedia[loop1Index];
                                 logFirebaseEvent('Button_download_file');
                                 await downloadFile(
                                   filename: 'test',
@@ -495,7 +578,7 @@ class _BoatownerviewticketsWidgetState
                                 );
                               }
                             },
-                            text: 'Download Media',
+                            text: 'Download Videos',
                             options: FFButtonOptions(
                               height: 40.0,
                               padding: EdgeInsetsDirectional.fromSTEB(

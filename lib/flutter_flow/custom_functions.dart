@@ -19,3 +19,18 @@ String normalizeUrl(String input) {
   }
   return 'https://' + input;
 }
+
+String? imagetostring(String? image) {
+  if (image == null) {
+    return '';
+  }
+  return image;
+}
+
+String? videotostring(String? video) {
+  if (video == null) {
+    return '';
+  }
+
+  return video;
+}

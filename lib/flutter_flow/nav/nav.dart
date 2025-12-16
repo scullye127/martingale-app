@@ -99,12 +99,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => AssignContractorWidget(),
         ),
         FFRoute(
-          name: CreateSubtask1Widget.routeName,
-          path: CreateSubtask1Widget.routePath,
+          name: CreateSubtaskWidget.routeName,
+          path: CreateSubtaskWidget.routePath,
           asyncParams: {
             'taskDetails': getDoc(['jobs'], JobsRecord.fromSnapshot),
           },
-          builder: (context, params) => CreateSubtask1Widget(
+          builder: (context, params) => CreateSubtaskWidget(
             taskDetails: params.getParam(
               'taskDetails',
               ParamType.Document,
@@ -137,16 +137,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => LoginWidget(),
         ),
         FFRoute(
-          name: AdminPageAssignedWidget.routeName,
-          path: AdminPageAssignedWidget.routePath,
-          builder: (context, params) => AdminPageAssignedWidget(),
-        ),
-        FFRoute(
-          name: AdminPageCompletedWidget.routeName,
-          path: AdminPageCompletedWidget.routePath,
-          builder: (context, params) => AdminPageCompletedWidget(),
-        ),
-        FFRoute(
           name: OwnerAccountCreationWidget.routeName,
           path: OwnerAccountCreationWidget.routePath,
           builder: (context, params) => OwnerAccountCreationWidget(),
@@ -161,10 +151,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           path: TaskDetailsWidget.routePath,
           asyncParams: {
             'task': getDoc(['jobs'], JobsRecord.fromSnapshot),
+            'subtaskDoc':
+                getDoc(['jobs', 'sub_task'], SubTaskRecord.fromSnapshot),
           },
           builder: (context, params) => TaskDetailsWidget(
             task: params.getParam(
               'task',
+              ParamType.Document,
+            ),
+            taskRef: params.getParam(
+              'taskRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['jobs'],
+            ),
+            subtaskDoc: params.getParam(
+              'subtaskDoc',
               ParamType.Document,
             ),
           ),
@@ -212,16 +214,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           name: AdminBoatListWidget.routeName,
           path: AdminBoatListWidget.routePath,
           builder: (context, params) => AdminBoatListWidget(),
-        ),
-        FFRoute(
-          name: AdminPageNewAssignedWidget.routeName,
-          path: AdminPageNewAssignedWidget.routePath,
-          builder: (context, params) => AdminPageNewAssignedWidget(),
-        ),
-        FFRoute(
-          name: AdminPageNewCompletedWidget.routeName,
-          path: AdminPageNewCompletedWidget.routePath,
-          builder: (context, params) => AdminPageNewCompletedWidget(),
         ),
         FFRoute(
           name: OwnerHomePageWidget.routeName,
@@ -279,14 +271,56 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           ),
         ),
         FFRoute(
-          name: CustomViewWidget.routeName,
-          path: CustomViewWidget.routePath,
-          builder: (context, params) => CustomViewWidget(),
+          name: CustomizePhotoWidget.routeName,
+          path: CustomizePhotoWidget.routePath,
+          asyncParams: {
+            'jobsdoc': getDoc(['jobs'], JobsRecord.fromSnapshot),
+          },
+          builder: (context, params) => CustomizePhotoWidget(
+            imageurl: params.getParam(
+              'imageurl',
+              ParamType.String,
+            ),
+            photoindex: params.getParam(
+              'photoindex',
+              ParamType.int,
+            ),
+            jobsdoc: params.getParam(
+              'jobsdoc',
+              ParamType.Document,
+            ),
+          ),
         ),
         FFRoute(
-          name: LoginCopyWidget.routeName,
-          path: LoginCopyWidget.routePath,
-          builder: (context, params) => LoginCopyWidget(),
+          name: CustomizeVideoWidget.routeName,
+          path: CustomizeVideoWidget.routePath,
+          asyncParams: {
+            'jobsdoc': getDoc(['jobs'], JobsRecord.fromSnapshot),
+          },
+          builder: (context, params) => CustomizeVideoWidget(
+            videourl: params.getParam(
+              'videourl',
+              ParamType.String,
+            ),
+            videoindex: params.getParam(
+              'videoindex',
+              ParamType.int,
+            ),
+            jobsdoc: params.getParam(
+              'jobsdoc',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: AdminPageAssignedWidget.routeName,
+          path: AdminPageAssignedWidget.routePath,
+          builder: (context, params) => AdminPageAssignedWidget(),
+        ),
+        FFRoute(
+          name: AdminPageCompletedWidget.routeName,
+          path: AdminPageCompletedWidget.routePath,
+          builder: (context, params) => AdminPageCompletedWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

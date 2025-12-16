@@ -61,6 +61,11 @@ class SubTaskRecord extends FirestoreRecord {
   String get parentID => _parentID ?? '';
   bool hasParentID() => _parentID != null;
 
+  // "subtask_title" field.
+  String? _subtaskTitle;
+  String get subtaskTitle => _subtaskTitle ?? '';
+  bool hasSubtaskTitle() => _subtaskTitle != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
@@ -73,6 +78,7 @@ class SubTaskRecord extends FirestoreRecord {
     _media = getDataList(snapshotData['media']);
     _subtaskID = snapshotData['subtask_ID'] as String?;
     _parentID = snapshotData['parent_ID'] as String?;
+    _subtaskTitle = snapshotData['subtask_title'] as String?;
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -123,6 +129,7 @@ Map<String, dynamic> createSubTaskRecordData({
   String? status,
   String? subtaskID,
   String? parentID,
+  String? subtaskTitle,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -134,6 +141,7 @@ Map<String, dynamic> createSubTaskRecordData({
       'status': status,
       'subtask_ID': subtaskID,
       'parent_ID': parentID,
+      'subtask_title': subtaskTitle,
     }.withoutNulls,
   );
 
@@ -154,7 +162,8 @@ class SubTaskRecordDocumentEquality implements Equality<SubTaskRecord> {
         e1?.status == e2?.status &&
         listEquality.equals(e1?.media, e2?.media) &&
         e1?.subtaskID == e2?.subtaskID &&
-        e1?.parentID == e2?.parentID;
+        e1?.parentID == e2?.parentID &&
+        e1?.subtaskTitle == e2?.subtaskTitle;
   }
 
   @override
@@ -167,7 +176,8 @@ class SubTaskRecordDocumentEquality implements Equality<SubTaskRecord> {
         e?.status,
         e?.media,
         e?.subtaskID,
-        e?.parentID
+        e?.parentID,
+        e?.subtaskTitle
       ]);
 
   @override

@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'custom_view_widget.dart' show CustomViewWidget;
+import 'customize_video_widget.dart' show CustomizeVideoWidget;
 import 'package:flutter/material.dart';
 
-class CustomViewModel extends FlutterFlowModel<CustomViewWidget> {
+class CustomizeVideoModel extends FlutterFlowModel<CustomizeVideoWidget> {
   @override
   void initState(BuildContext context) {}
 

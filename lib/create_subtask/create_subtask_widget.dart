@@ -5,38 +5,41 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'create_subtask1_model.dart';
-export 'create_subtask1_model.dart';
+import 'create_subtask_model.dart';
+export 'create_subtask_model.dart';
 
-class CreateSubtask1Widget extends StatefulWidget {
-  const CreateSubtask1Widget({
+class CreateSubtaskWidget extends StatefulWidget {
+  const CreateSubtaskWidget({
     super.key,
     required this.taskDetails,
   });
 
   final JobsRecord? taskDetails;
 
-  static String routeName = 'createSubtask1';
-  static String routePath = '/createSubtask1';
+  static String routeName = 'createSubtask';
+  static String routePath = '/createSubtask';
 
   @override
-  State<CreateSubtask1Widget> createState() => _CreateSubtask1WidgetState();
+  State<CreateSubtaskWidget> createState() => _CreateSubtaskWidgetState();
 }
 
-class _CreateSubtask1WidgetState extends State<CreateSubtask1Widget> {
-  late CreateSubtask1Model _model;
+class _CreateSubtaskWidgetState extends State<CreateSubtaskWidget> {
+  late CreateSubtaskModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => CreateSubtask1Model());
+    _model = createModel(context, () => CreateSubtaskModel());
 
     logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'createSubtask1'});
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+        parameters: {'screen_name': 'createSubtask'});
+    _model.textController1 ??= TextEditingController();
+    _model.textFieldFocusNode1 ??= FocusNode();
+
+    _model.textController2 ??= TextEditingController();
+    _model.textFieldFocusNode2 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -91,7 +94,7 @@ class _CreateSubtask1WidgetState extends State<CreateSubtask1Widget> {
                         Align(
                           alignment: AlignmentDirectional(0.0, -1.0),
                           child: Text(
-                            'Create Subtask #1',
+                            'Create Subtask',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -170,8 +173,8 @@ class _CreateSubtask1WidgetState extends State<CreateSubtask1Widget> {
                     Container(
                       width: 200.0,
                       child: TextFormField(
-                        controller: _model.textController,
-                        focusNode: _model.textFieldFocusNode,
+                        controller: _model.textController1,
+                        focusNode: _model.textFieldFocusNode1,
                         autofocus: false,
                         enabled: true,
                         obscureText: false,
@@ -195,7 +198,7 @@ class _CreateSubtask1WidgetState extends State<CreateSubtask1Widget> {
                                         .labelMedium
                                         .fontStyle,
                                   ),
-                          hintText: 'TextField',
+                          hintText: 'Subtask Title',
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     font: GoogleFonts.inter(
@@ -265,58 +268,157 @@ class _CreateSubtask1WidgetState extends State<CreateSubtask1Widget> {
                             ),
                         cursorColor: FlutterFlowTheme.of(context).primaryText,
                         enableInteractiveSelection: true,
-                        validator:
-                            _model.textControllerValidator.asValidator(context),
+                        validator: _model.textController1Validator
+                            .asValidator(context),
                       ),
                     ),
-                    FFButtonWidget(
-                      onPressed: () async {
-                        logFirebaseEvent(
-                            'CREATE_SUBTASK1_CREATE_SUBTASK_BTN_ON_TA');
-                        logFirebaseEvent('Button_backend_call');
-
-                        await SubTaskRecord.createDoc(
-                                widget.taskDetails!.reference)
-                            .set(createSubTaskRecordData(
-                          assignedContractor: '',
-                          jobDescription: '',
-                          boatName: '',
-                          contractorNotes: '',
-                          status: '',
-                        ));
-                      },
-                      text: 'Create Subtask',
-                      options: FFButtonOptions(
-                        height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 0.0),
-                        iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  font: GoogleFonts.interTight(
+                    Container(
+                      width: 200.0,
+                      child: TextFormField(
+                        controller: _model.textController2,
+                        focusNode: _model.textFieldFocusNode2,
+                        autofocus: false,
+                        enabled: true,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          isDense: true,
+                          labelStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
                                     fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                        .labelMedium
                                         .fontWeight,
                                     fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                        .labelMedium
                                         .fontStyle,
                                   ),
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .fontStyle,
-                                ),
-                        elevation: 0.0,
-                        borderRadius: BorderRadius.circular(8.0),
+                          hintText: 'Subtask Description',
+                          hintStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .fontStyle,
+                                  ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          filled: true,
+                          fillColor:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              font: GoogleFonts.inter(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
+                              ),
+                              letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
+                            ),
+                        cursorColor: FlutterFlowTheme.of(context).primaryText,
+                        enableInteractiveSelection: true,
+                        validator: _model.textController2Validator
+                            .asValidator(context),
                       ),
                     ),
                   ],
+                ),
+                FFButtonWidget(
+                  onPressed: () async {
+                    logFirebaseEvent(
+                        'CREATE_SUBTASK_CREATE_SUBTASK_BTN_ON_TAP');
+                    logFirebaseEvent('Button_backend_call');
+
+                    await SubTaskRecord.createDoc(
+                            widget.taskDetails!.reference)
+                        .set(createSubTaskRecordData(
+                      assignedContractor: '',
+                      jobDescription: _model.textController2.text,
+                      boatName: '',
+                      subtaskTitle: _model.textController1.text,
+                    ));
+                  },
+                  text: 'Create Subtask',
+                  options: FFButtonOptions(
+                    height: 40.0,
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    iconPadding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: FlutterFlowTheme.of(context).primary,
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          font: GoogleFonts.interTight(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .fontStyle,
+                          ),
+                          color: Colors.white,
+                          letterSpacing: 0.0,
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                        ),
+                    elevation: 0.0,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
                 ),
                 FlutterFlowIconButton(
                   borderRadius: 8.0,
@@ -328,7 +430,7 @@ class _CreateSubtask1WidgetState extends State<CreateSubtask1Widget> {
                     size: 24.0,
                   ),
                   onPressed: () async {
-                    logFirebaseEvent('CREATE_SUBTASK1_arrow_back_ICN_ON_TAP');
+                    logFirebaseEvent('CREATE_SUBTASK_arrow_back_ICN_ON_TAP');
                     logFirebaseEvent('IconButton_navigate_back');
                     context.safePop();
                   },
