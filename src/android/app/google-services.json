@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "60320923553",
+    "project_id": "martingale-app-5qaulz",
+    "storage_bucket": "martingale-app-5qaulz.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:60320923553:android:8ea06768bda2e8210015e0",
+        "android_client_info": {
+          "package_name": "com.mycompany.martingaleapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUXvOGetRCeSTiS6HaI4t4ykwT126ddC4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:60320923553:android:84c941c1c5e144f60015e0",
+        "android_client_info": {
+          "package_name": "com.uricsc305.martingaleapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUXvOGetRCeSTiS6HaI4t4ykwT126ddC4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
