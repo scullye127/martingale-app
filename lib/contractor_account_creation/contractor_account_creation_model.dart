@@ -7,6 +7,10 @@ import 'package:flutter/material.dart';
 
 class ContractorAccountCreationModel
     extends FlutterFlowModel<ContractorAccountCreationWidget> {
+  ///  Local state fields for this page.
+
+  bool editingMode = false;
+
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();

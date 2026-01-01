@@ -139,7 +139,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
         FFRoute(
           name: OwnerAccountCreationWidget.routeName,
           path: OwnerAccountCreationWidget.routePath,
-          builder: (context, params) => OwnerAccountCreationWidget(),
+          asyncParams: {
+            'ownerAccountDetails': getDoc(
+                ['users', 'owner_database'], OwnerDatabaseRecord.fromSnapshot),
+          },
+          builder: (context, params) => OwnerAccountCreationWidget(
+            ownerAccountDetails: params.getParam(
+              'ownerAccountDetails',
+              ParamType.Document,
+            ),
+          ),
         ),
         FFRoute(
           name: SignUpWidget.routeName,

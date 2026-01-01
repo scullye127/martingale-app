@@ -1086,27 +1086,6 @@ class _TicketSubmitWidgetState extends State<TicketSubmitWidget>
                   child: FFButtonWidget(
                     onPressed: () async {
                       logFirebaseEvent('TICKET_SUBMIT_PAGE_backButton_ON_TAP');
-                      logFirebaseEvent('backButton_validate_form');
-                      if (_model.formKey.currentState == null ||
-                          !_model.formKey.currentState!.validate()) {
-                        return;
-                      }
-                      logFirebaseEvent('backButton_backend_call');
-
-                      await JobsRecord.collection.doc().set({
-                        ...createJobsRecordData(
-                          title: _model.jobNameTextController.text,
-                          timeCreated: getCurrentTimestamp,
-                          description: _model.loginEmailTextController.text,
-                          boatOwner: currentUserDisplayName,
-                          status: 'Submitted',
-                        ),
-                        ...mapToFirestore(
-                          {
-                            'media': _model.tempMediaList,
-                          },
-                        ),
-                      });
                       logFirebaseEvent('backButton_navigate_to');
 
                       context.goNamed(OwnerHomePageWidget.routeName);

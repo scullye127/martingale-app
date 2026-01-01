@@ -9,6 +9,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'contractor_account_creation_model.dart';
 export 'contractor_account_creation_model.dart';
@@ -37,6 +38,20 @@ class _ContractorAccountCreationWidgetState
 
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'contractorAccountCreation'});
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('CONTRACTOR_ACCOUNT_CREATION_contractorAc');
+      if (currentUserDisplayName == '') {
+        logFirebaseEvent('contractorAccountCreation_update_page_st');
+        _model.editingMode = true;
+        safeSetState(() {});
+      } else {
+        logFirebaseEvent('contractorAccountCreation_update_page_st');
+        _model.editingMode = false;
+        safeSetState(() {});
+      }
+    });
+
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 
@@ -269,6 +284,7 @@ class _ContractorAccountCreationWidgetState
                                     focusNode: _model.textFieldFocusNode1,
                                     autofocus: false,
                                     enabled: true,
+                                    readOnly: !_model.editingMode,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       isDense: true,
@@ -354,8 +370,9 @@ class _ContractorAccountCreationWidgetState
                                             BorderRadius.circular(8.0),
                                       ),
                                       filled: true,
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                      fillColor: _model.editingMode
+                                          ? Colors.white
+                                          : Colors.black,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -397,6 +414,7 @@ class _ContractorAccountCreationWidgetState
                                     focusNode: _model.textFieldFocusNode2,
                                     autofocus: false,
                                     enabled: true,
+                                    readOnly: !_model.editingMode,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       isDense: true,
@@ -482,8 +500,9 @@ class _ContractorAccountCreationWidgetState
                                             BorderRadius.circular(8.0),
                                       ),
                                       filled: true,
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                      fillColor: _model.editingMode
+                                          ? Colors.white
+                                          : Colors.black,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -525,6 +544,7 @@ class _ContractorAccountCreationWidgetState
                                     focusNode: _model.textFieldFocusNode3,
                                     autofocus: false,
                                     enabled: true,
+                                    readOnly: !_model.editingMode,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       isDense: true,
@@ -610,8 +630,9 @@ class _ContractorAccountCreationWidgetState
                                             BorderRadius.circular(8.0),
                                       ),
                                       filled: true,
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                      fillColor: _model.editingMode
+                                          ? Colors.white
+                                          : Colors.black,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -653,6 +674,7 @@ class _ContractorAccountCreationWidgetState
                                     focusNode: _model.textFieldFocusNode4,
                                     autofocus: false,
                                     enabled: true,
+                                    readOnly: !_model.editingMode,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       isDense: true,
@@ -738,8 +760,9 @@ class _ContractorAccountCreationWidgetState
                                             BorderRadius.circular(8.0),
                                       ),
                                       filled: true,
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                      fillColor: _model.editingMode
+                                          ? Colors.white
+                                          : Colors.black,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -781,6 +804,7 @@ class _ContractorAccountCreationWidgetState
                                     focusNode: _model.textFieldFocusNode5,
                                     autofocus: false,
                                     enabled: true,
+                                    readOnly: !_model.editingMode,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       isDense: true,
@@ -866,8 +890,9 @@ class _ContractorAccountCreationWidgetState
                                             BorderRadius.circular(8.0),
                                       ),
                                       filled: true,
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                      fillColor: _model.editingMode
+                                          ? Colors.white
+                                          : Colors.black,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -909,6 +934,7 @@ class _ContractorAccountCreationWidgetState
                                     focusNode: _model.textFieldFocusNode6,
                                     autofocus: false,
                                     enabled: true,
+                                    readOnly: !_model.editingMode,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       isDense: true,
@@ -994,8 +1020,9 @@ class _ContractorAccountCreationWidgetState
                                             BorderRadius.circular(8.0),
                                       ),
                                       filled: true,
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                      fillColor: _model.editingMode
+                                          ? Colors.white
+                                          : Colors.black,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -1037,6 +1064,7 @@ class _ContractorAccountCreationWidgetState
                                     focusNode: _model.textFieldFocusNode7,
                                     autofocus: false,
                                     enabled: true,
+                                    readOnly: !_model.editingMode,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       isDense: true,
@@ -1122,8 +1150,9 @@ class _ContractorAccountCreationWidgetState
                                             BorderRadius.circular(8.0),
                                       ),
                                       filled: true,
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                      fillColor: _model.editingMode
+                                          ? Colors.white
+                                          : Colors.black,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -1165,6 +1194,7 @@ class _ContractorAccountCreationWidgetState
                                     focusNode: _model.textFieldFocusNode8,
                                     autofocus: false,
                                     enabled: true,
+                                    readOnly: !_model.editingMode,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       isDense: true,
@@ -1251,8 +1281,9 @@ class _ContractorAccountCreationWidgetState
                                             BorderRadius.circular(8.0),
                                       ),
                                       filled: true,
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                      fillColor: _model.editingMode
+                                          ? Colors.white
+                                          : Colors.black,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -1291,55 +1322,39 @@ class _ContractorAccountCreationWidgetState
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            logFirebaseEvent(
-                                'CONTRACTOR_ACCOUNT_CREATION_CONFIRM_DETA');
-                            logFirebaseEvent('Button_validate_form');
-                            if (_model.formKey.currentState == null ||
-                                !_model.formKey.currentState!.validate()) {
-                              return;
-                            }
-                            logFirebaseEvent('Button_backend_call');
-
-                            await currentUserReference!
-                                .update(createUsersRecordData(
-                              phoneNumber: _model.textController2.text,
-                              displayName: _model.textController1.text,
-                              isCreated: true,
-                            ));
-                            logFirebaseEvent('Button_backend_call');
-
-                            await ContractorsRecord.createDoc(
-                                    currentUserReference!)
-                                .set(createContractorsRecordData(
-                              insurancePolicyNum: _model.textController5.text,
-                              insuranceCompany: _model.textController4.text,
-                              yearsExperience:
-                                  int.tryParse(_model.textController3.text),
-                              availability: _model.textController8.text,
-                              serviceArea: _model.textController6.text,
-                            ));
-                            logFirebaseEvent('Button_navigate_to');
-
-                            context
-                                .pushNamed(ContractorHomePageWidget.routeName);
-                          },
-                          text: 'Confirm Details',
-                          options: FFButtonOptions(
-                            width: 300.0,
-                            height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 0.0, 16.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: Color(0xFF2B3745),
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  font: GoogleFonts.interTight(
+                      if (!_model.editingMode)
+                        Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              logFirebaseEvent(
+                                  'CONTRACTOR_ACCOUNT_CREATION_EDIT_DETAILS');
+                              logFirebaseEvent('Button_update_page_state');
+                              _model.editingMode = true;
+                              safeSetState(() {});
+                            },
+                            text: 'Edit Details',
+                            options: FFButtonOptions(
+                              width: 300.0,
+                              height: 40.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 16.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: Color(0xFF2B3745),
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    font: GoogleFonts.interTight(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
+                                    ),
+                                    color: Color(0xFFEFC641),
+                                    letterSpacing: 0.0,
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .fontWeight,
@@ -1347,20 +1362,83 @@ class _ContractorAccountCreationWidgetState
                                         .titleSmall
                                         .fontStyle,
                                   ),
-                                  color: Color(0xFFEFC641),
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .fontStyle,
-                                ),
-                            elevation: 0.0,
-                            borderRadius: BorderRadius.circular(8.0),
+                              elevation: 0.0,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
                           ),
                         ),
-                      ),
+                      if (_model.editingMode)
+                        Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              logFirebaseEvent(
+                                  'CONTRACTOR_ACCOUNT_CREATION_CONFIRM_DETA');
+                              logFirebaseEvent('Button_validate_form');
+                              if (_model.formKey.currentState == null ||
+                                  !_model.formKey.currentState!.validate()) {
+                                return;
+                              }
+                              logFirebaseEvent('Button_backend_call');
+
+                              await currentUserReference!
+                                  .update(createUsersRecordData(
+                                phoneNumber: _model.textController2.text,
+                                displayName: _model.textController1.text,
+                                isCreated: true,
+                                email: '',
+                              ));
+                              logFirebaseEvent('Button_backend_call');
+
+                              await ContractorsRecord.createDoc(
+                                      currentUserReference!)
+                                  .set(createContractorsRecordData(
+                                insurancePolicyNum: _model.textController5.text,
+                                insuranceCompany: _model.textController4.text,
+                                yearsExperience:
+                                    int.tryParse(_model.textController3.text),
+                                availability: _model.textController8.text,
+                                serviceArea: _model.textController6.text,
+                              ));
+                              logFirebaseEvent('Button_navigate_to');
+
+                              context.pushNamed(
+                                  ContractorHomePageWidget.routeName);
+                            },
+                            text: 'Confirm Details',
+                            options: FFButtonOptions(
+                              width: 300.0,
+                              height: 40.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 16.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: Color(0xFF2B3745),
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    font: GoogleFonts.interTight(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
+                                    ),
+                                    color: Color(0xFFEFC641),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
+                              elevation: 0.0,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                        ),
                       Padding(
                         padding: EdgeInsets.all(16.0),
                         child: FFButtonWidget(

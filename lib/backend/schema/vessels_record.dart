@@ -30,25 +30,10 @@ class VesselsRecord extends FirestoreRecord {
   String get ownerName => _ownerName ?? '';
   bool hasOwnerName() => _ownerName != null;
 
-  // "engine_make" field.
-  String? _engineMake;
-  String get engineMake => _engineMake ?? '';
-  bool hasEngineMake() => _engineMake != null;
-
-  // "engine_model" field.
-  String? _engineModel;
-  String get engineModel => _engineModel ?? '';
-  bool hasEngineModel() => _engineModel != null;
-
   // "home_port" field.
   String? _homePort;
   String get homePort => _homePort ?? '';
   bool hasHomePort() => _homePort != null;
-
-  // "engine_manual" field.
-  String? _engineManual;
-  String get engineManual => _engineManual ?? '';
-  bool hasEngineManual() => _engineManual != null;
 
   // "parts_reference" field.
   DocumentReference? _partsReference;
@@ -61,10 +46,7 @@ class VesselsRecord extends FirestoreRecord {
     _vesselName = snapshotData['vessel_name'] as String?;
     _hullId = snapshotData['hull_id'] as String?;
     _ownerName = snapshotData['owner_name'] as String?;
-    _engineMake = snapshotData['engine_make'] as String?;
-    _engineModel = snapshotData['engine_model'] as String?;
     _homePort = snapshotData['home_port'] as String?;
-    _engineManual = snapshotData['engine_manual'] as String?;
     _partsReference = snapshotData['parts_reference'] as DocumentReference?;
   }
 
@@ -111,10 +93,7 @@ Map<String, dynamic> createVesselsRecordData({
   String? vesselName,
   String? hullId,
   String? ownerName,
-  String? engineMake,
-  String? engineModel,
   String? homePort,
-  String? engineManual,
   DocumentReference? partsReference,
 }) {
   final firestoreData = mapToFirestore(
@@ -122,10 +101,7 @@ Map<String, dynamic> createVesselsRecordData({
       'vessel_name': vesselName,
       'hull_id': hullId,
       'owner_name': ownerName,
-      'engine_make': engineMake,
-      'engine_model': engineModel,
       'home_port': homePort,
-      'engine_manual': engineManual,
       'parts_reference': partsReference,
     }.withoutNulls,
   );
@@ -141,24 +117,13 @@ class VesselsRecordDocumentEquality implements Equality<VesselsRecord> {
     return e1?.vesselName == e2?.vesselName &&
         e1?.hullId == e2?.hullId &&
         e1?.ownerName == e2?.ownerName &&
-        e1?.engineMake == e2?.engineMake &&
-        e1?.engineModel == e2?.engineModel &&
         e1?.homePort == e2?.homePort &&
-        e1?.engineManual == e2?.engineManual &&
         e1?.partsReference == e2?.partsReference;
   }
 
   @override
-  int hash(VesselsRecord? e) => const ListEquality().hash([
-        e?.vesselName,
-        e?.hullId,
-        e?.ownerName,
-        e?.engineMake,
-        e?.engineModel,
-        e?.homePort,
-        e?.engineManual,
-        e?.partsReference
-      ]);
+  int hash(VesselsRecord? e) => const ListEquality().hash(
+      [e?.vesselName, e?.hullId, e?.ownerName, e?.homePort, e?.partsReference]);
 
   @override
   bool isValidKey(Object? o) => o is VesselsRecord;
